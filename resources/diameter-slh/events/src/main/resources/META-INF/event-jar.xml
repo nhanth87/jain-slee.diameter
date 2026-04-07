@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE event-jar PUBLIC "-//Sun Microsystems, Inc.//DTD JAIN SLEE Event 1.1//EN" "http://java.sun.com/dtd/slee-event-jar_1_1.dtd">
+
+<event-jar>
+  <description>Diameter SLh Events</description>
+
+  <event-definition>
+    <event-type-name>net.java.slee.resource.diameter.slh.events.RoutingInfoRequest</event-type-name>
+    <event-type-vendor>java.net</event-type-vendor>
+    <event-type-version>0.8</event-type-version>
+    <event-class-name>net.java.slee.resource.diameter.slh.events.RoutingInfoRequest</event-class-name>
+  </event-definition>
+
+  <event-definition>
+    <event-type-name>net.java.slee.resource.diameter.slh.events.RoutingInfoAnswer</event-type-name>
+    <event-type-vendor>java.net</event-type-vendor>
+    <event-type-version>0.8</event-type-version>
+    <event-class-name>net.java.slee.resource.diameter.slh.events.RoutingInfoAnswer</event-class-name>
+  </event-definition>
+
+  <event-definition>
+    <event-type-name>net.java.slee.resource.diameter.slh.events.LocationReportRequest</event-type-name>
+    <event-type-vendor>java.net</event-type-vendor>
+    <event-type-version>0.8</event-type-version>
+    <event-class-name>net.java.slee.resource.diameter.slh.events.LocationReportRequest</event-class-name>
+  </event-definition>
+
+  <event-definition>
+    <event-type-name>net.java.slee.resource.diameter.slh.events.LocationReportAnswer</event-type-name>
+    <event-type-vendor>java.net</event-type-vendor>
+    <event-type-version>0.8</event-type-version>
+    <event-class-name>net.java.slee.resource.diameter.slh.events.LocationReportAnswer</event-class-name>
+  </event-definition>
+</event-jar>

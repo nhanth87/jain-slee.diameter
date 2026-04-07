@@ -34,7 +34,8 @@ import javax.sdp.SdpFactory;
 import javax.sdp.SdpParseException;
 import javax.sdp.SessionDescription;
 
-import sun.net.util.IPAddressUtil;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import net.java.slee.resource.diameter.base.events.avp.IPFilterRule;
 import net.java.slee.resource.diameter.gq.GqAvpFactory;
@@ -727,24 +728,24 @@ public class SDPConverter {
           currRules = currSubComponents[j].getFlowDescriptions();
           for (int k = 0; k < currRules.length; k++)
             if (currRules[k].getDirection() == IPFilterRule.DIR_IN && source) {
-              if (currRules[k].getSourcePorts().length > 0 && IPAddressUtil.isIPv4LiteralAddress(currRules[k].getSourceIp())) {
+              if (currRules[k].getSourcePorts().length > 0 && isIPv4Address(currRules[k].getSourceIp())) {
                 result += "a=rtcp:" + currRules[k].getSourcePorts()[0][0] + " IN IP4 " + currRules[k].getSourceIp()
                     + System.getProperty("line.separator");
                 rtcpFound = true;
               }
-              else if (currRules[k].getSourcePorts().length > 0 && IPAddressUtil.isIPv6LiteralAddress(currRules[k].getSourceIp())) {
+              else if (currRules[k].getSourcePorts().length > 0 && isIPv6Address(currRules[k].getSourceIp())) {
                 result += "a=rtcp:" + currRules[k].getSourcePorts()[0][0] + " IN IP6 " + currRules[k].getSourceIp()
                     + System.getProperty("line.separator");
                 rtcpFound = true;
               }
             }
             else if (currRules[k].getDirection() == IPFilterRule.DIR_OUT && !source) {
-              if (currRules[k].getDestPorts().length > 0 && IPAddressUtil.isIPv4LiteralAddress(currRules[k].getDestIp())) {
+              if (currRules[k].getDestPorts().length > 0 && isIPv4Address(currRules[k].getDestIp())) {
                 result += "a=rtcp:" + currRules[k].getDestPorts()[0][0] + " IN IP4 " + currRules[k].getDestIp()
                     + System.getProperty("line.separator");
                 rtcpFound = true;
               }
-              else if (currRules[k].getDestPorts().length > 0 && IPAddressUtil.isIPv6LiteralAddress(currRules[k].getDestIp())) {
+              else if (currRules[k].getDestPorts().length > 0 && isIPv6Address(currRules[k].getDestIp())) {
                 result += "a=rtcp:" + currRules[k].getDestPorts()[0][0] + " IN IP6 " + currRules[k].getDestIp()
                     + System.getProperty("line.separator");
                 rtcpFound = true;
@@ -755,7 +756,7 @@ public class SDPConverter {
           currRules = currSubComponents[j].getFlowDescriptions();
           for (int k = 0; k < currRules.length; k++)
             if (currRules[k].getDirection() == IPFilterRule.DIR_IN && source) {
-              if (IPAddressUtil.isIPv4LiteralAddress(currRules[k].getSourceIp())) {
+              if (isIPv4Address(currRules[k].getSourceIp())) {
                 originAddress = "IN IP4 " + currRules[k].getSourceIp();
                 result += "c=IN IP4 " + currRules[k].getSourceIp() + System.getProperty("line.separator");
                 dataFound = true;
@@ -767,7 +768,7 @@ public class SDPConverter {
               }
             }
             else if (currRules[k].getDirection() == IPFilterRule.DIR_OUT && !source) {
-              if (IPAddressUtil.isIPv4LiteralAddress(currRules[k].getDestIp())) {
+              if (isIPv4Address(currRules[k].getDestIp())) {
                 originAddress = "IN IP4 " + currRules[k].getDestIp();
                 result += "c=IN IP4 " + currRules[k].getDestIp() + System.getProperty("line.separator");
                 dataFound = true;

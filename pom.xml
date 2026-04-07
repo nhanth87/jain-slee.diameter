@@ -9,7 +9,7 @@
 
 	<groupId>org.mobicents.servers.jainslee.diameter</groupId>
 	<artifactId>restcomm-slee-diameter</artifactId>
-	<version>7.0.0-SNAPSHOT</version>
+	<version>7.3.0-102</version>
 
 	<packaging>pom</packaging>
 
@@ -18,8 +18,8 @@
 		<maven.du.plugin.wildfly.version>4.0.2</maven.du.plugin.wildfly.version>
 		<restcomm.jain.slee.version>2.9.147</restcomm.jain.slee.version>
 		<!-- Mobicents Diameter Components Versions -->
-		<restcomm.diameter.jdiameter.version>1.7.1-123</restcomm.diameter.jdiameter.version>
-		<restcomm.diameter.mux.version>1.7.1-123</restcomm.diameter.mux.version>
+		<restcomm.diameter.jdiameter.version>2.0.0-302</restcomm.diameter.jdiameter.version>
+		<restcomm.diameter.mux.version>2.0.0-302</restcomm.diameter.mux.version>
 	</properties>
 
 	<build>
@@ -29,8 +29,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>11</source>
+					<target>11</target>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -49,6 +49,8 @@
 		<module>resources/diameter-rx</module>
 		<module>resources/diameter-s6a</module>
 		<module>resources/diameter-s13</module>
+		<module>resources/diameter-slg</module>
+		<module>resources/diameter-slh</module>
 		<module>enablers/hss-client</module>
 	</modules>
 	
