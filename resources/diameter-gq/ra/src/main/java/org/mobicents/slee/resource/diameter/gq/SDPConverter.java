@@ -761,7 +761,7 @@ public class SDPConverter {
                 result += "c=IN IP4 " + currRules[k].getSourceIp() + System.getProperty("line.separator");
                 dataFound = true;
               }
-              else if (IPAddressUtil.isIPv6LiteralAddress(currRules[k].getSourceIp())) {
+              else if (isIPv6Address(currRules[k].getSourceIp())) {
                 originAddress = "IN IP6 " + currRules[k].getSourceIp();
                 result += "c=IN IP6 " + currRules[k].getSourceIp() + System.getProperty("line.separator");
                 dataFound = true;
@@ -773,7 +773,7 @@ public class SDPConverter {
                 result += "c=IN IP4 " + currRules[k].getDestIp() + System.getProperty("line.separator");
                 dataFound = true;
               }
-              else if (IPAddressUtil.isIPv6LiteralAddress(currRules[k].getSourceIp())) {
+              else if (isIPv6Address(currRules[k].getSourceIp())) {
                 originAddress = "IN IP6 " + currRules[k].getDestIp();
                 result += "c=IN IP6 " + currRules[k].getDestIp() + System.getProperty("line.separator");
                 dataFound = true;
@@ -798,5 +798,39 @@ public class SDPConverter {
     catch (Exception ex) {
       return null;
     }
+  }
+
+  // Helper methods for IP address validation
+  private static boolean isIPv4Address(String ip) {
+    if (ip == null || ip.isEmpty()) return false;
+    String[] parts = ip.split("\\.", -1);
+    if (parts.length != 4) return false;
+    for (String segment : parts) {
+      try {
+        int num = Integer.parseInt(segment);
+        if (num < 0 || num > 255) return false;
+      } catch (NumberFormatException e) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private static boolean isIPv6Address(String ip) {
+    if (ip == null || ip.isEmpty()) return false;
+    // Simple check - contains at least one colon and valid hex characters
+    if (!ip.contains(":")) return false;
+    String[] parts = ip.split(":");
+    if (parts.length < 2 || parts.length > 8) return false;
+    for (String part : parts) {
+      if (part.isEmpty()) continue; // :: can result in empty parts
+      try {
+        int num = Integer.parseInt(part, 16);
+        if (num < 0 || num > 0xFFFF) return false;
+      } catch (NumberFormatException e) {
+        return false;
+      }
+    }
+    return true;
   }
 }

@@ -33,6 +33,7 @@ import org.jdiameter.api.Message;
 import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
 import org.mobicents.slee.resource.diameter.base.events.avp.ExperimentalResultAvpImpl;
 import org.mobicents.slee.resource.diameter.base.events.avp.FailedAvpImpl;
+import org.restcomm.slee.resource.diameter.slg.events.avp.SupportedFeaturesAvpImpl;
 
 /**
  * Implementation of the LocationAnswer interface.
@@ -201,7 +202,7 @@ public class LocationAnswerImpl extends DiameterMessageImpl implements LocationA
   }
 
   public SupportedFeaturesAvp[] getSupportedFeatureses() {
-    return (SupportedFeaturesAvp[]) getAvpsAsCustom(SLgAvpCodes.VENDOR_ID, SLgAvpCodes.SupportedFeaturesAvpImpl.class);
+    return (SupportedFeaturesAvp[]) getAvpsAsCustom(SLgAvpCodes.VENDOR_ID, SupportedFeaturesAvpImpl.class);
   }
 
   public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures) {

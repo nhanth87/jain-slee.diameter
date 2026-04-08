@@ -24,6 +24,7 @@ package org.restcomm.slee.resource.diameter.slg.events;
 
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.slg.events.avp.SupportedFeaturesAvp;
+import org.restcomm.slee.resource.diameter.slg.events.avp.SupportedFeaturesAvpImpl;
 import net.java.slee.resource.diameter.slg.events.ProvideLocationRequest;
 import net.java.slee.resource.diameter.slg.events.avp.AreaEventInfo;
 import net.java.slee.resource.diameter.slg.events.avp.LocationType;
@@ -221,7 +222,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
   }
 
   public SupportedFeaturesAvp[] getSupportedFeatureses() {
-    return (SupportedFeaturesAvp[]) getAvpsAsCustom(SLgAvpCodes.VENDOR_ID, SLgAvpCodes.SupportedFeaturesAvpImpl.class);
+    return (SupportedFeaturesAvp[]) getAvpsAsCustom(SLgAvpCodes.VENDOR_ID, SupportedFeaturesAvpImpl.class);
   }
 
   public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures) {

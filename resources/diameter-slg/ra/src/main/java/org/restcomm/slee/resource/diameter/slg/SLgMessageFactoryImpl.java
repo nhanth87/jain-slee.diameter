@@ -54,6 +54,8 @@ import org.restcomm.slee.resource.diameter.slg.events.ProvideLocationRequestImpl
  */
 public class SLgMessageFactoryImpl extends DiameterMessageFactoryImpl implements SLgMessageFactory {
 
+  private static final long _3GPP_VENDOR_ID = 10415L;
+
   private static Logger logger = Logger.getLogger(SLgMessageFactoryImpl.class);
 
   private DiameterAvp[] EMPTY_AVP_ARRAY = new DiameterAvp[]{};
@@ -141,62 +143,43 @@ public class SLgMessageFactoryImpl extends DiameterMessageFactoryImpl implements
   public ProvideLocationRequest createProvideLocationRequest() {
     try {
       return (ProvideLocationRequest) createSlgMessage(null, EMPTY_AVP_ARRAY, ProvideLocationRequest.commandCode, slgAppId);
+    } catch (InternalException e) {
+      throw new IllegalStateException("Failed to create Provide-Location-Request", e);
     }
-    catch (InternalException e) {
-      logger.error("Failed to create Provide-Location-Request", e);
-    }
-
-    return null;
   }
 
   public ProvideLocationRequest createProvideLocationRequest(DiameterIdentity destinationHost, DiameterIdentity destinationRealm) {
-    try {
-      ProvideLocationRequest request = createProvideLocationRequest();
-      if (destinationHost != null) {
-        request.setDestinationHost(destinationHost);
-      }
-      if (destinationRealm != null) {
-        request.setDestinationRealm(destinationRealm);
-      }
-      return request;
+    ProvideLocationRequest request = createProvideLocationRequest();
+    if (destinationHost != null) {
+      request.setDestinationHost(destinationHost);
     }
-    catch (InternalException e) {
-      logger.error("Failed to create Provide-Location-Request with destination", e);
+    if (destinationRealm != null) {
+      request.setDestinationRealm(destinationRealm);
     }
-
-    return null;
+    return request;
   }
 
   public ProvideLocationAnswer createProvideLocationAnswer(ProvideLocationRequest request) {
     try {
       return (ProvideLocationAnswer) createSlgMessage(request.getHeader(), EMPTY_AVP_ARRAY, ProvideLocationRequest.commandCode, slgAppId);
+    } catch (InternalException e) {
+      throw new IllegalStateException("Failed to create Provide-Location-Answer", e);
     }
-    catch (InternalException e) {
-      logger.error("Failed to create Provide-Location-Answer", e);
-    }
-
-    return null;
   }
 
   public ProvideLocationAnswer createProvideLocationAnswer(ProvideLocationRequest request, long resultCode, boolean isExperimentalResult) {
-    try {
-      ProvideLocationAnswer answer = createProvideLocationAnswer(request);
-      if (isExperimentalResult) {
-        ExperimentalResultAvpImpl experimentalResult = new ExperimentalResultAvpImpl();
-        experimentalResult.setExperimentalResultCode(resultCode);
-        experimentalResult.setVendorIdAVP(_3GPP_VENDOR_ID);
-        answer.setExperimentalResult(experimentalResult);
-      }
-      else {
-        answer.setResultCode(resultCode);
-      }
+    ProvideLocationAnswer answer = createProvideLocationAnswer(request);
+    if (isExperimentalResult) {
+      ExperimentalResultAvpImpl experimentalResult = new ExperimentalResultAvpImpl();
+      experimentalResult.setExperimentalResultCode(resultCode);
+      experimentalResult.setVendorIdAVP(_3GPP_VENDOR_ID);
+      answer.setExperimentalResult(experimentalResult);
+    }
+    else {
+      answer.setResultCode(resultCode);
+    }
 
-      return answer;
-    }
-    catch (InternalException e) {
-      logger.error("Failed to create Provide-Location-Answer with result code", e);
-    }
-    return null;
+    return answer;
   }
 
   // Location Messages ------------------------------------------------
@@ -204,63 +187,43 @@ public class SLgMessageFactoryImpl extends DiameterMessageFactoryImpl implements
   public LocationRequest createLocationRequest() {
     try {
       return (LocationRequest) createSlgMessage(null, EMPTY_AVP_ARRAY, LocationRequest.commandCode, slgAppId);
+    } catch (InternalException e) {
+      throw new IllegalStateException("Failed to create Location-Request", e);
     }
-    catch (InternalException e) {
-      logger.error("Failed to create Location-Request", e);
-    }
-
-    return null;
   }
 
   public LocationRequest createLocationRequest(DiameterIdentity destinationHost, DiameterIdentity destinationRealm) {
-    try {
-      LocationRequest request = createLocationRequest();
-      if (destinationHost != null) {
-        request.setDestinationHost(destinationHost);
-      }
-      if (destinationRealm != null) {
-        request.setDestinationRealm(destinationRealm);
-      }
-      return request;
+    LocationRequest request = createLocationRequest();
+    if (destinationHost != null) {
+      request.setDestinationHost(destinationHost);
     }
-    catch (InternalException e) {
-      logger.error("Failed to create Location-Request with destination", e);
+    if (destinationRealm != null) {
+      request.setDestinationRealm(destinationRealm);
     }
-
-    return null;
+    return request;
   }
 
   public LocationAnswer createLocationAnswer(LocationRequest request) {
     try {
       return (LocationAnswer) createSlgMessage(request.getHeader(), EMPTY_AVP_ARRAY, LocationRequest.commandCode, slgAppId);
+    } catch (InternalException e) {
+      throw new IllegalStateException("Failed to create Location-Answer", e);
     }
-    catch (InternalException e) {
-      logger.error("Failed to create Location-Answer", e);
-    }
-
-    return null;
   }
 
   public LocationAnswer createLocationAnswer(LocationRequest request, long resultCode, boolean isExperimentalResult) {
-    try {
-      LocationAnswer answer = createLocationAnswer(request);
-      if (isExperimentalResult) {
-        ExperimentalResultAvpImpl experimentalResult = new ExperimentalResultAvpImpl();
-        experimentalResult.setExperimentalResultCode(resultCode);
-        experimentalResult.setVendorIdAVP(_3GPP_VENDOR_ID);
-        answer.setExperimentalResult(experimentalResult);
-      }
-      else {
-        answer.setResultCode(resultCode);
-      }
-
-      return answer;
+    LocationAnswer answer = createLocationAnswer(request);
+    if (isExperimentalResult) {
+      ExperimentalResultAvpImpl experimentalResult = new ExperimentalResultAvpImpl();
+      experimentalResult.setExperimentalResultCode(resultCode);
+      experimentalResult.setVendorIdAVP(_3GPP_VENDOR_ID);
+      answer.setExperimentalResult(experimentalResult);
     }
-    catch (InternalException e) {
-      logger.error("Failed to create Location-Answer with result code", e);
+    else {
+      answer.setResultCode(resultCode);
     }
 
-    return null;
+    return answer;
   }
 
   // Base Message Factory ---------------------------------------------
