@@ -9,7 +9,7 @@
 
 	<groupId>org.mobicents.servers.jainslee.diameter</groupId>
 	<artifactId>restcomm-slee-diameter</artifactId>
-	<version>7.3.0-102</version>
+	<version>7.4.0</version>
 
 	<packaging>pom</packaging>
 
@@ -18,8 +18,8 @@
 		<maven.du.plugin.wildfly.version>4.0.2</maven.du.plugin.wildfly.version>
 		<restcomm.jain.slee.version>2.9.147</restcomm.jain.slee.version>
 		<!-- Mobicents Diameter Components Versions -->
-		<restcomm.diameter.jdiameter.version>2.0.0-302</restcomm.diameter.jdiameter.version>
-		<restcomm.diameter.mux.version>2.0.0-302</restcomm.diameter.mux.version>
+		<restcomm.diameter.jdiameter.version>2.0.1-SNAPSHOT</restcomm.diameter.jdiameter.version>
+		<restcomm.diameter.mux.version>2.0.1-SNAPSHOT</restcomm.diameter.mux.version>
 	</properties>
 
 	<build>
@@ -27,7 +27,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
+				<version>3.8.1</version>
 				<configuration>
 					<source>11</source>
 					<target>11</target>
@@ -73,6 +73,16 @@
             		<version>1.7.21</version>
             		<scope>provided</scope>
         	</dependency>
+			<dependency>
+				<groupId>org.jctools</groupId>
+				<artifactId>jctools-core</artifactId>
+				<version>4.0.3</version>
+			</dependency>
+			<dependency>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+				<version>1.4.20</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

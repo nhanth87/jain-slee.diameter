@@ -22,5 +22,17 @@
 			<artifactId>restcomm-slee-ra-diameter-base-common-ra</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<!-- JCTools for high-performance concurrent data structures -->
+		<dependency>
+			<groupId>org.jctools</groupId>
+			<artifactId>jctools-core</artifactId>
+			<version>4.0.3</version>
+		</dependency>
+		<!-- XStream for XML serialization -->
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.20</version>
+		</dependency>
 	</dependencies>
 </project>
