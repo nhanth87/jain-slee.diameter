@@ -54,7 +54,7 @@ public class EventIDCache {
   public static Map<Integer, String> eventNames = new ConcurrentHashMap<Integer, String>();
 
   static {
-    Map<Integer, String> eventsTemp = new HashMap<Integer, String>();
+    Map<Integer, String> eventsTemp = new ConcurrentHashMap<>();
 
     eventsTemp.put(GqAARequest.COMMAND_CODE, GQ_PACKAGE_PREFIX + "GqAA");
     eventsTemp.put(GqAbortSessionRequest.COMMAND_CODE, GQ_PACKAGE_PREFIX + "GqAbortSession");

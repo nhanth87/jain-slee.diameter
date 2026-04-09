@@ -24,7 +24,8 @@ package org.restcomm.slee.resource.diameter.slg;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.List;
 
 import javax.management.ObjectName;
@@ -653,7 +654,7 @@ public class SLgResourceAdaptor implements ResourceAdaptor, DiameterListener, Di
     private SLgResourceAdaptor ra = null;
     private Validator validator = new ValidatorImpl();
 
-    private ArrayList<Integer> requestCodes = new ArrayList<Integer>();
+    private final Set<Integer> requestCodes = ConcurrentHashMap.newKeySet();
 
     public SLgProviderImpl(SLgResourceAdaptor slgResourceAdaptor) {
       this.ra = slgResourceAdaptor;

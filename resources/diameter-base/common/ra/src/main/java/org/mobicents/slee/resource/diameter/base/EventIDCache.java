@@ -55,7 +55,7 @@ public class EventIDCache {
   public static Map<Integer, String> eventNames = new ConcurrentHashMap<Integer, String>();
 
   static {
-    Map<Integer, String> eventsTemp = new HashMap<Integer, String>();
+    Map<Integer, String> eventsTemp = new ConcurrentHashMap<>();
 
     eventsTemp.put(AbortSessionRequest.commandCode, PACKAGE_PREFIX + "AbortSession");
     eventsTemp.put(AccountingRequest.commandCode, PACKAGE_PREFIX + "Accounting");

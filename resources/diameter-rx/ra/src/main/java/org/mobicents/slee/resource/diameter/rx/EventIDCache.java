@@ -52,7 +52,7 @@ public class EventIDCache {
   public static Map<Integer, String> eventNames = new ConcurrentHashMap<Integer, String>();
 
   static {
-    final Map<Integer, String> eventsTemp = new HashMap<Integer, String>();
+    final Map<Integer, String> eventsTemp = new ConcurrentHashMap<>();
 
     eventsTemp.put(AARequest.commandCode, RX_PACKAGE_PREFIX + "AA");
 

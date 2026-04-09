@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.mobicents.servers.jainslee.enablers</groupId>
 		<artifactId>hss-client</artifactId>
-		<version>7.3.0-102</version>
+		<version>7.4.4</version>
 	</parent>
 
 	<artifactId>hss-client-release</artifactId>

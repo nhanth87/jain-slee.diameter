@@ -24,7 +24,8 @@ package org.restcomm.slee.resource.diameter.slh;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.List;
 
 import javax.management.ObjectName;
@@ -582,7 +583,7 @@ public class SLhResourceAdaptor implements ResourceAdaptor, DiameterListener, Di
     private SLhResourceAdaptor ra = null;
     private Validator validator = new ValidatorImpl();
 
-    private ArrayList<Integer> requestCodes = new ArrayList<Integer>();
+    private final Set<Integer> requestCodes = ConcurrentHashMap.newKeySet();
 
     public SLhProviderImpl(SLhResourceAdaptor slhResourceAdaptor) {
       this.ra = slhResourceAdaptor;

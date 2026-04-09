@@ -26,7 +26,8 @@ import static org.jdiameter.client.impl.helpers.Parameters.MessageTimeOut;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -831,7 +832,7 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
     private DiameterShServerResourceAdaptor ra = null;
     private Validator validator = new ValidatorImpl();
 
-    private ArrayList<Integer> requestCodes = new ArrayList<Integer>();
+    private final Set<Integer> requestCodes = ConcurrentHashMap.newKeySet();
 
     public ShServerProviderImpl(DiameterShServerResourceAdaptor diameterShServerResourceAdaptor) {
       this.ra = diameterShServerResourceAdaptor;

@@ -58,7 +58,7 @@ public class EventIDCache {
   public static Map<Integer, String> eventNames = new ConcurrentHashMap<Integer, String>();
 
   static {
-    Map<Integer, String> eventsTemp = new HashMap<Integer, String>();
+    Map<Integer, String> eventsTemp = new ConcurrentHashMap<>();
 
     eventsTemp.put(RoutingInfoRequest.commandCode, SLH_PACKAGE_PREFIX + "RoutingInfo");
 

@@ -58,7 +58,7 @@ public class EventIDCache {
   public static Map<Integer, String> eventNames = new ConcurrentHashMap<Integer, String>();
 
   static {
-    Map<Integer, String> eventsTemp = new HashMap<Integer, String>();
+    Map<Integer, String> eventsTemp = new ConcurrentHashMap<>();
 
     eventsTemp.put(CreditControlMessage.commandCode, CCA_PACKAGE_PREFIX + "CreditControl");
 

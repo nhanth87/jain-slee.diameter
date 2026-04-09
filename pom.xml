@@ -18,8 +18,8 @@
 		<maven.du.plugin.wildfly.version>4.0.2</maven.du.plugin.wildfly.version>
 		<restcomm.jain.slee.version>2.9.147</restcomm.jain.slee.version>
 		<!-- Mobicents Diameter Components Versions -->
-		<restcomm.diameter.jdiameter.version>2.0.1-SNAPSHOT</restcomm.diameter.jdiameter.version>
-		<restcomm.diameter.mux.version>2.0.1-SNAPSHOT</restcomm.diameter.mux.version>
+		<restcomm.diameter.jdiameter.version>2.0.0-302</restcomm.diameter.jdiameter.version>
+		<restcomm.diameter.mux.version>2.0.0-302</restcomm.diameter.mux.version>
 	</properties>
 
 	<build>

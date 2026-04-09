@@ -22,8 +22,9 @@
 
 package org.mobicents.slee.resource.diameter.base.handlers;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.Set;
 
 import net.java.slee.resource.diameter.base.events.AbortSessionAnswer;
 import net.java.slee.resource.diameter.base.events.AccountingAnswer;
@@ -61,8 +62,8 @@ import org.jdiameter.common.impl.app.acc.AccSessionFactoryImpl;
  */
 public class AccountingSessionFactory extends AccSessionFactoryImpl implements IAppSessionFactory, ServerAccSessionListener, StateChangeListener<AppSession>, ClientAccSessionListener {
 
-  private static HashSet<Integer> accEventCodes = new HashSet<Integer>();
-  private static HashSet<Integer> authEventCodes = new HashSet<Integer>();
+  private static final Set<Integer> accEventCodes = ConcurrentHashMap.newKeySet();
+  private static final Set<Integer> authEventCodes = ConcurrentHashMap.newKeySet();
 
   static {
     authEventCodes.add(AbortSessionAnswer.commandCode);
@@ -72,7 +73,7 @@ public class AccountingSessionFactory extends AccSessionFactoryImpl implements I
     accEventCodes.add(AccountingAnswer.commandCode);
   }
 
-  protected HashMap<ApplicationId, DiameterRAInterface> ras;
+  protected Map<ApplicationId, DiameterRAInterface> ras;
   protected long messageTimeout = 5000;
   protected SessionFactory sessionFactory = null;
   protected final static Logger logger = Logger.getLogger(AccountingSessionFactory.class);
@@ -87,7 +88,7 @@ public class AccountingSessionFactory extends AccSessionFactoryImpl implements I
    */
 
   private AccountingSessionFactory() {
-    this.ras = new HashMap<ApplicationId, DiameterRAInterface>();
+    this.ras = new ConcurrentHashMap<>();
   }
 
   public void registerListener(DiameterRAInterface ra, long messageTimeout, SessionFactory sessionFactory) {

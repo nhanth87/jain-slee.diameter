@@ -50,7 +50,7 @@ public class EventIDCache {
   public static Map<Integer, String> eventNames = new ConcurrentHashMap<Integer, String>();
 
   static {
-    Map<Integer, String> eventsTemp = new HashMap<Integer, String>();
+    Map<Integer, String> eventsTemp = new ConcurrentHashMap<>();
     eventsTemp.put(RfAccountingAnswer.commandCode, RF_PACKAGE_PREFIX + "RfAccounting");
     eventNames = Collections.unmodifiableMap(eventsTemp);
   }

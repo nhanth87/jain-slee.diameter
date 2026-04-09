@@ -56,7 +56,7 @@ public class EventIDCache {
     public static Map<Integer, String> eventNames = new ConcurrentHashMap<Integer, String>();
 
     static {
-        final Map<Integer, String> eventsTemp = new HashMap<Integer, String>();
+        final Map<Integer, String> eventsTemp = new ConcurrentHashMap<>();
 
         eventsTemp.put(GxCreditControlRequest.commandCode, GX_PACKAGE_PREFIX + "GxCreditControl");
         eventsTemp.put(GxReAuthRequest.commandCode, GX_PACKAGE_PREFIX + "GxReAuth");

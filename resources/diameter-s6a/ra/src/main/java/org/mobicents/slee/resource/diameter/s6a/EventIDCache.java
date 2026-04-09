@@ -50,7 +50,7 @@ public class EventIDCache {
     public static Map<Integer, String> eventNames = new ConcurrentHashMap<Integer, String>();
 
     static {
-        Map<Integer, String> eventsTemp = new HashMap<Integer, String>();
+        Map<Integer, String> eventsTemp = new ConcurrentHashMap<>();
 
         eventsTemp.put(AuthenticationInformationRequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "AuthenticationInformation");
         eventsTemp.put(CancelLocationRequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "CancelLocation");

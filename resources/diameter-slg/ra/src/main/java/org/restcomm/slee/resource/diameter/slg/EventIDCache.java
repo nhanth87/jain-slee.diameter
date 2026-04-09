@@ -59,7 +59,7 @@ public class EventIDCache {
   public static Map<Integer, String> eventNames = new ConcurrentHashMap<Integer, String>();
 
   static {
-    Map<Integer, String> eventsTemp = new HashMap<Integer, String>();
+    Map<Integer, String> eventsTemp = new ConcurrentHashMap<>();
 
     eventsTemp.put(ProvideLocationRequest.commandCode, SLG_PACKAGE_PREFIX + "ProvideLocation");
     eventsTemp.put(LocationRequest.commandCode, SLG_PACKAGE_PREFIX + "Location");

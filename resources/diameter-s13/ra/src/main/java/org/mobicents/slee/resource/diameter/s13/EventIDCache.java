@@ -40,7 +40,7 @@ public class EventIDCache {
     public static Map<Integer, String> eventNames = new ConcurrentHashMap<Integer, String>();
 
     static {
-        Map<Integer, String> eventsTemp = new HashMap<Integer, String>();
+        Map<Integer, String> eventsTemp = new ConcurrentHashMap<>();
 
         eventsTemp.put(MEIdentityCheckRequest.COMMAND_CODE, S13_PACKAGE_PREFIX + "MEIdentityCheck");
         eventNames = Collections.unmodifiableMap(eventsTemp);
