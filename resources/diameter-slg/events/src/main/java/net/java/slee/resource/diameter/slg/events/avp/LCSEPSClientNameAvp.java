@@ -25,62 +25,54 @@ package net.java.slee.resource.diameter.slg.events.avp;
 import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
 /**
- * Defines an interface representing the LCS-EPS-Client-Name grouped AVP type.
- *
+ * Defines an interface representing the LCS-EPS-Client-Name grouped AVP.
+ * 
  * From the Diameter SLg Reference Point Protocol Details (3GPP TS 29.172):
+ * 
  * <pre>
- * 7.4.2        LCS-EPS-Client-Name
+ * 7.4.2 LCS-EPS-Client-Name
  * 
  * The LCS-EPS-Client-Name AVP is of type Grouped.
- * 
- * AVP format
- * LCS-EPS-Client-Name ::= <AVP header: 2501 10415>
- *                         { LCS-Client-Type }
- *                         [ LCS-Requestor-Id ]
- *                         *[AVP]
  * </pre>
- * 
- * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
- * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  */
 public interface LCSEPSClientNameAvp extends GroupedAvp {
 
   /**
-   * Returns true if the LCS-Client-Type AVP is present in the message.
+   * Returns true if the LCS-Name-String AVP is present in the message.
    */
-  boolean hasLCSClientType();
+  boolean hasLCSNameString();
 
   /**
-   * Returns the value of the LCS-Client-Type AVP, of type Enumerated.
+   * Returns the value of the LCS-Name-String AVP, of type UTF8String.
    * 
-   * @return the value of the LCS-Client-Type AVP or null if it has not been set
+   * @return the value of the LCS-Name-String AVP or null if it has not been set
    */
-  int getLCSClientType();
+  String getLCSNameString();
 
   /**
-   * Sets the value of the LCS-Client-Type AVP, of type Enumerated.
+   * Sets the value of the LCS-Name-String AVP, of type UTF8String.
    * 
-   * @throws IllegalStateException if setLCSClientType has already been called
+   * @throws IllegalStateException if setLCSNameString has already been called
    */
-  void setLCSClientType(int lcsClientType);
+  void setLCSNameString(String lcsNameString);
 
   /**
-   * Returns true if the LCS-Requestor-Id AVP is present in the message.
+   * Returns true if the LCS-Format-Indicator AVP is present in the message.
    */
-  boolean hasLCSRequestorId();
+  boolean hasLCSFormatIndicator();
 
   /**
-   * Returns the value of the LCS-Requestor-Id AVP, of type UTF8String.
+   * Returns the value of the LCS-Format-Indicator AVP, of type Enumerated.
    * 
-   * @return the value of the LCS-Requestor-Id AVP or null if it has not been set
+   * @return the value of the LCS-Format-Indicator AVP or null if it has not been set
    */
-  String getLCSRequestorId();
+  int getLCSFormatIndicator();
 
   /**
-   * Sets the value of the LCS-Requestor-Id AVP, of type UTF8String.
+   * Sets the value of the LCS-Format-Indicator AVP, of type Enumerated.
    * 
-   * @throws IllegalStateException if setLCSRequestorId has already been called
+   * @throws IllegalStateException if setLCSFormatIndicator has already been called
    */
-  void setLCSRequestorId(String lcsRequestorId);
+  void setLCSFormatIndicator(int lcsFormatIndicator);
 
 }

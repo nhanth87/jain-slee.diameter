@@ -9,4 +9,8 @@ public interface GERANPositioningInfoAvp extends GroupedAvp {
     boolean hasGERANPositioningData();
     byte[] getGERANPositioningData();
     void setGERANPositioningData(byte[] data);
+
+    boolean hasGERANGANSSPositioningData();
+    byte[] getGERANGANSSPositioningData();
+    void setGERANGANSSPositioningData(byte[] data);
 }

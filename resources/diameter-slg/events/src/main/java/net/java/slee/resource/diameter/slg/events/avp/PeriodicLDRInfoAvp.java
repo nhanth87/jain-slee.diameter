@@ -25,23 +25,7 @@ package net.java.slee.resource.diameter.slg.events.avp;
 import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
 /**
- * Defines an interface representing the Periodic-LDR-Info grouped AVP type.
- *
- * From the Diameter SLg Reference Point Protocol Details (3GPP TS 29.172):
- * <pre>
- * 7.4.51        Periodic-LDR-Info
- * 
- * The Periodic-LDR-Info AVP is of type Grouped.
- * 
- * AVP format
- * Periodic-LDR-Info ::= <AVP header: 2543 10415>
- *                       { Reporting-Interval }
- *                       { Reporting-Amount }
- *                       *[AVP]
- * </pre>
- * 
- * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
- * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
+ * Defines an interface representing the Periodic-LDR-Information grouped AVP.
  */
 public interface PeriodicLDRInfoAvp extends GroupedAvp {
 

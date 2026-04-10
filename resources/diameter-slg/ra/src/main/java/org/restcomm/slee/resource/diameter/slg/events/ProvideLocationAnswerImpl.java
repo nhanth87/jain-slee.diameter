@@ -24,9 +24,17 @@ package org.restcomm.slee.resource.diameter.slg.events;
 
 import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
 import net.java.slee.resource.diameter.base.events.avp.FailedAvp;
+import net.java.slee.resource.diameter.slg.events.avp.ESMLCCellInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.GERANPositioningInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.ServingNodeAvp;
 import net.java.slee.resource.diameter.slg.events.avp.SupportedFeaturesAvp;
 import net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer;
 import net.java.slee.resource.diameter.slg.events.avp.SLgAvpCodes;
+import net.java.slee.resource.diameter.slg.events.avp.UTRANPositioningInfoAvp;
+import org.restcomm.slee.resource.diameter.slg.events.avp.ESMLCCellInfoAvpImpl;
+import org.restcomm.slee.resource.diameter.slg.events.avp.GERANPositioningInfoAvpImpl;
+import org.restcomm.slee.resource.diameter.slg.events.avp.ServingNodeAvpImpl;
+import org.restcomm.slee.resource.diameter.slg.events.avp.UTRANPositioningInfoAvpImpl;
 
 import org.jdiameter.api.Avp;
 import org.jdiameter.api.Message;
@@ -213,6 +221,111 @@ public class ProvideLocationAnswerImpl extends DiameterMessageImpl implements Pr
     for (SupportedFeaturesAvp supportedFeatures : supportedFeatureses) {
       setSupportedFeatures(supportedFeatures);
     }
+  }
+
+  @Override
+  public boolean hasGERANPositioningInfo() {
+    return hasAvp(SLgAvpCodes.GERAN_POSITIONING_INFO, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public GERANPositioningInfoAvp getGERANPositioningInfo() {
+    return (GERANPositioningInfoAvp) getAvpAsCustom(SLgAvpCodes.GERAN_POSITIONING_INFO, SLgAvpCodes.SLG_VENDOR_ID, GERANPositioningInfoAvpImpl.class);
+  }
+
+  @Override
+  public void setGERANPositioningInfo(GERANPositioningInfoAvp geranPositioningInfo) {
+    addAvp(SLgAvpCodes.GERAN_POSITIONING_INFO, SLgAvpCodes.SLG_VENDOR_ID, geranPositioningInfo.byteArrayValue());
+  }
+
+  @Override
+  public boolean hasUTRANPositioningInfo() {
+    return hasAvp(SLgAvpCodes.UTRAN_POSITIONING_INFO, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public UTRANPositioningInfoAvp getUTRANPositioningInfo() {
+    return (UTRANPositioningInfoAvp) getAvpAsCustom(SLgAvpCodes.UTRAN_POSITIONING_INFO, SLgAvpCodes.SLG_VENDOR_ID, UTRANPositioningInfoAvpImpl.class);
+  }
+
+  @Override
+  public void setUTRANPositioningInfo(UTRANPositioningInfoAvp utranPositioningInfo) {
+    addAvp(SLgAvpCodes.UTRAN_POSITIONING_INFO, SLgAvpCodes.SLG_VENDOR_ID, utranPositioningInfo.byteArrayValue());
+  }
+
+  @Override
+  public boolean hasServingNode() {
+    return hasAvp(SLgAvpCodes.SERVING_NODE, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public ServingNodeAvp getServingNode() {
+    return (ServingNodeAvp) getAvpAsCustom(SLgAvpCodes.SERVING_NODE, SLgAvpCodes.SLG_VENDOR_ID, ServingNodeAvpImpl.class);
+  }
+
+  @Override
+  public void setServingNode(ServingNodeAvp servingNode) {
+    addAvp(SLgAvpCodes.SERVING_NODE, SLgAvpCodes.SLG_VENDOR_ID, servingNode.byteArrayValue());
+  }
+
+  @Override
+  public boolean hasESMLCCellInfo() {
+    return hasAvp(SLgAvpCodes.ESMLC_CELL_INFO, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public ESMLCCellInfoAvp getESMLCCellInfo() {
+    return (ESMLCCellInfoAvp) getAvpAsCustom(SLgAvpCodes.ESMLC_CELL_INFO, SLgAvpCodes.SLG_VENDOR_ID, ESMLCCellInfoAvpImpl.class);
+  }
+
+  @Override
+  public void setESMLCCellInfo(ESMLCCellInfoAvp esmlcCellInfo) {
+    addAvp(SLgAvpCodes.ESMLC_CELL_INFO, SLgAvpCodes.SLG_VENDOR_ID, esmlcCellInfo.byteArrayValue());
+  }
+
+  @Override
+  public boolean hasCivicAddress() {
+    return hasAvp(SLgAvpCodes.CIVIC_ADDRESS, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public String getCivicAddress() {
+    return getAvpAsUTF8String(SLgAvpCodes.CIVIC_ADDRESS, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public void setCivicAddress(String civicAddress) {
+    addAvp(SLgAvpCodes.CIVIC_ADDRESS, SLgAvpCodes.SLG_VENDOR_ID, civicAddress);
+  }
+
+  @Override
+  public boolean hasBarometricPressure() {
+    return hasAvp(SLgAvpCodes.BAROMETRIC_PRESSURE, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public long getBarometricPressure() {
+    return getAvpAsUnsigned32(SLgAvpCodes.BAROMETRIC_PRESSURE, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public void setBarometricPressure(long barometricPressure) {
+    addAvp(SLgAvpCodes.BAROMETRIC_PRESSURE, SLgAvpCodes.SLG_VENDOR_ID, barometricPressure);
+  }
+
+  @Override
+  public boolean hasCellGlobalIdentity() {
+    return hasAvp(SLgAvpCodes.CELL_GLOBAL_IDENTITY, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public byte[] getCellGlobalIdentity() {
+    return getAvpAsOctetString(SLgAvpCodes.CELL_GLOBAL_IDENTITY, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public void setCellGlobalIdentity(byte[] cellGlobalIdentity) {
+    addAvp(SLgAvpCodes.CELL_GLOBAL_IDENTITY, SLgAvpCodes.SLG_VENDOR_ID, cellGlobalIdentity);
   }
 
 }

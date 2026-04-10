@@ -41,33 +41,33 @@ public class LCSEPSClientNameAvpImpl extends GroupedAvpImpl implements LCSEPSCli
   }
 
   @Override
-  public boolean hasLCSClientType() {
-    return hasAvp(SLgAvpCodes.LCS_CLIENT_TYPE, SLgAvpCodes.SLG_VENDOR_ID);
+  public boolean hasLCSNameString() {
+    return hasAvp(SLgAvpCodes.LCS_NAME_STRING, SLgAvpCodes.SLG_VENDOR_ID);
   }
 
   @Override
-  public int getLCSClientType() {
-    return getAvpAsInteger32(SLgAvpCodes.LCS_CLIENT_TYPE, SLgAvpCodes.SLG_VENDOR_ID);
+  public String getLCSNameString() {
+    return getAvpAsUTF8String(SLgAvpCodes.LCS_NAME_STRING, SLgAvpCodes.SLG_VENDOR_ID);
   }
 
   @Override
-  public void setLCSClientType(int lcsClientType) {
-    addAvp(SLgAvpCodes.LCS_CLIENT_TYPE, SLgAvpCodes.SLG_VENDOR_ID, lcsClientType);
+  public void setLCSNameString(String lcsNameString) {
+    addAvp(SLgAvpCodes.LCS_NAME_STRING, SLgAvpCodes.SLG_VENDOR_ID, lcsNameString);
   }
 
   @Override
-  public boolean hasLCSRequestorId() {
-    return hasAvp(SLgAvpCodes.LCS_REQUESTOR_NAME_STRING, SLgAvpCodes.SLG_VENDOR_ID);
+  public boolean hasLCSFormatIndicator() {
+    return hasAvp(SLgAvpCodes.LCS_FORMAT_INDICATOR, SLgAvpCodes.SLG_VENDOR_ID);
   }
 
   @Override
-  public String getLCSRequestorId() {
-    return getAvpAsUTF8String(SLgAvpCodes.LCS_REQUESTOR_NAME_STRING, SLgAvpCodes.SLG_VENDOR_ID);
+  public int getLCSFormatIndicator() {
+    return getAvpAsInteger32(SLgAvpCodes.LCS_FORMAT_INDICATOR, SLgAvpCodes.SLG_VENDOR_ID);
   }
 
   @Override
-  public void setLCSRequestorId(String lcsRequestorId) {
-    addAvp(SLgAvpCodes.LCS_REQUESTOR_NAME_STRING, SLgAvpCodes.SLG_VENDOR_ID, lcsRequestorId);
+  public void setLCSFormatIndicator(int lcsFormatIndicator) {
+    addAvp(SLgAvpCodes.LCS_FORMAT_INDICATOR, SLgAvpCodes.SLG_VENDOR_ID, lcsFormatIndicator);
   }
 
 }

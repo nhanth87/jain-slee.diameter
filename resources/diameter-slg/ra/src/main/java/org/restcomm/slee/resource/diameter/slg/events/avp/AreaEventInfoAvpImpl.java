@@ -59,4 +59,64 @@ public class AreaEventInfoAvpImpl extends GroupedAvpImpl implements AreaEventInf
   public void setIntervalTime(long intervalTime) {
     addAvp(SLgAvpCodes.INTERVAL_TIME, SLgAvpCodes.SLG_VENDOR_ID, intervalTime);
   }
+
+  @Override
+  public boolean hasMaximumInterval() {
+    return hasAvp(SLgAvpCodes.MAXIMUM_INTERVAL, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public long getMaximumInterval() {
+    return getAvpAsUnsigned32(SLgAvpCodes.MAXIMUM_INTERVAL, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public void setMaximumInterval(long maximumInterval) {
+    addAvp(SLgAvpCodes.MAXIMUM_INTERVAL, SLgAvpCodes.SLG_VENDOR_ID, maximumInterval);
+  }
+
+  @Override
+  public boolean hasSamplingInterval() {
+    return hasAvp(SLgAvpCodes.SAMPLING_INTERVAL, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public long getSamplingInterval() {
+    return getAvpAsUnsigned32(SLgAvpCodes.SAMPLING_INTERVAL, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public void setSamplingInterval(long samplingInterval) {
+    addAvp(SLgAvpCodes.SAMPLING_INTERVAL, SLgAvpCodes.SLG_VENDOR_ID, samplingInterval);
+  }
+
+  @Override
+  public boolean hasReportDuration() {
+    return hasAvp(SLgAvpCodes.REPORTING_DURATION, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public long getReportDuration() {
+    return getAvpAsUnsigned32(SLgAvpCodes.REPORTING_DURATION, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public void setReportDuration(long reportDuration) {
+    addAvp(SLgAvpCodes.REPORTING_DURATION, SLgAvpCodes.SLG_VENDOR_ID, reportDuration);
+  }
+
+  @Override
+  public boolean hasReportingLocationRequirements() {
+    return hasAvp(SLgAvpCodes.REPORTING_LOCATION_REQUIREMENTS, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public long getReportingLocationRequirements() {
+    return getAvpAsUnsigned32(SLgAvpCodes.REPORTING_LOCATION_REQUIREMENTS, SLgAvpCodes.SLG_VENDOR_ID);
+  }
+
+  @Override
+  public void setReportingLocationRequirements(long reportingLocationRequirements) {
+    addAvp(SLgAvpCodes.REPORTING_LOCATION_REQUIREMENTS, SLgAvpCodes.SLG_VENDOR_ID, reportingLocationRequirements);
+  }
 }

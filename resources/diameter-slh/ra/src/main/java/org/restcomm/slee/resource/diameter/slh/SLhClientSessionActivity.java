@@ -31,7 +31,7 @@ import net.java.slee.resource.diameter.slh.SLhAVPFactory;
 import net.java.slee.resource.diameter.slh.SLhActivity;
 import net.java.slee.resource.diameter.slh.SLhMessageFactory;
 import net.java.slee.resource.diameter.slh.events.RoutingInfoRequest;
-import net.java.slee.resource.diameter.slh.events.LocationReportRequest;
+// import net.java.slee.resource.diameter.slh.events.LocationReportRequest; // Removed - not supported in jdiameter 2.0.0-304
 
 import org.jdiameter.api.Answer;
 import org.jdiameter.api.EventListener;
@@ -79,7 +79,7 @@ public class SLhClientSessionActivity extends DiameterActivityImpl implements SL
     try {
       // Wrap the SLEE RoutingInfoRequest to implement LCSRoutingInfoRequest
       LCSRoutingInfoRequest wrappedRequest = new LCSRoutingInfoRequestWrapper(message);
-      clientSession.sendRoutingInfoRequest(wrappedRequest);
+      clientSession.sendLCSRoutingInfoRequest(wrappedRequest);
     }
     catch (org.jdiameter.api.validation.AvpNotAllowedException e) {
       throw new AvpNotAllowedException("Message validation failed.", e, e.getAvpCode(), e.getVendorId());
@@ -89,18 +89,8 @@ public class SLhClientSessionActivity extends DiameterActivityImpl implements SL
     }
   }
 
-  public void sendLocationReportRequest(LocationReportRequest message) throws IOException {
-    try {
-      // Wrap the SLEE LocationReportRequest to implement org.jdiameter.api.slh.events.LocationReportRequest
-      org.jdiameter.api.slh.events.LocationReportRequest wrappedRequest = new LocationReportRequestWrapper(message);
-      clientSession.sendLocationReportRequest(wrappedRequest);
-    }
-    catch (org.jdiameter.api.validation.AvpNotAllowedException e) {
-      throw new AvpNotAllowedException("Message validation failed.", e, e.getAvpCode(), e.getVendorId());
-    }
-    catch (Exception e) {
-      throw new IOException("Failed to send message, due to: " + e.getLocalizedMessage());
-    }
+  public void sendLocationReportRequest(net.java.slee.resource.diameter.slh.events.LocationReportRequest message) throws IOException {
+    throw new UnsupportedOperationException("LocationReportRequest is not supported in jdiameter 2.0.0-304 API");
   }
 
   /**
@@ -152,54 +142,7 @@ public class SLhClientSessionActivity extends DiameterActivityImpl implements SL
     }
   }
 
-  /**
-   * Wrapper class that wraps a SLEE LocationReportRequest and implements org.jdiameter.api.slh.events.LocationReportRequest
-   */
-  private class LocationReportRequestWrapper implements org.jdiameter.api.slh.events.LocationReportRequest {
-    private final net.java.slee.resource.diameter.slh.events.LocationReportRequest wrapped;
-    private final org.jdiameter.api.Message message;
-    
-    public LocationReportRequestWrapper(net.java.slee.resource.diameter.slh.events.LocationReportRequest wrapped) {
-      this.wrapped = wrapped;
-      this.message = ((DiameterMessageImpl) wrapped).getGenericData();
-    }
-    
-    @Override
-    public org.jdiameter.api.Message getMessage() throws org.jdiameter.api.InternalException {
-      return message;
-    }
-    
-    @Override
-    public int getCommandCode() {
-      return org.jdiameter.api.slh.events.LocationReportRequest.code;
-    }
-    
-    // getShortName and getLongName are not part of AppEvent interface
-    
-    @Override
-    public String getOriginHost() throws org.jdiameter.api.AvpDataException {
-      org.jdiameter.api.Avp avp = message.getAvps().getAvp(264); // Origin-Host AVP code
-      return avp != null ? avp.getUTF8String() : null;
-    }
-    
-    @Override
-    public String getOriginRealm() throws org.jdiameter.api.AvpDataException {
-      org.jdiameter.api.Avp avp = message.getAvps().getAvp(296); // Origin-Realm AVP code
-      return avp != null ? avp.getUTF8String() : null;
-    }
-    
-    @Override
-    public String getDestinationHost() throws org.jdiameter.api.AvpDataException {
-      org.jdiameter.api.Avp avp = message.getAvps().getAvp(293); // Destination-Host AVP code
-      return avp != null ? avp.getUTF8String() : null;
-    }
-    
-    @Override
-    public String getDestinationRealm() throws org.jdiameter.api.AvpDataException {
-      org.jdiameter.api.Avp avp = message.getAvps().getAvp(283); // Destination-Realm AVP code
-      return avp != null ? avp.getUTF8String() : null;
-    }
-  }
+  // LocationReportRequestWrapper removed - not supported in jdiameter 2.0.0-304 API
 
   public SLhMessageFactory getSLhMessageFactory() {
     return this.messageFactory;

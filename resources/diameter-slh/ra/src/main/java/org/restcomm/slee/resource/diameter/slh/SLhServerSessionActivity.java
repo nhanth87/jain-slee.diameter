@@ -123,7 +123,7 @@ public class SLhServerSessionActivity extends DiameterActivityImpl implements SL
       fetchSessionData(msg, false);
       // Wrap the SLEE RoutingInfoAnswer to implement LCSRoutingInfoAnswer
       LCSRoutingInfoAnswer wrappedAnswer = new LCSRoutingInfoAnswerWrapper(message);
-      this.serverSession.sendRoutingInfoAnswer(wrappedAnswer);
+      this.serverSession.sendLCSRoutingInfoAnswer(wrappedAnswer);
       clean(msg);
     }
     catch (org.jdiameter.api.validation.AvpNotAllowedException e) {

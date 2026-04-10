@@ -25,7 +25,11 @@ package net.java.slee.resource.diameter.slg.events;
 import net.java.slee.resource.diameter.base.events.DiameterMessage;
 import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
 import net.java.slee.resource.diameter.base.events.avp.FailedAvp;
+import net.java.slee.resource.diameter.slg.events.avp.ESMLCCellInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.GERANPositioningInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.ServingNodeAvp;
 import net.java.slee.resource.diameter.slg.events.avp.SupportedFeaturesAvp;
+import net.java.slee.resource.diameter.slg.events.avp.UTRANPositioningInfoAvp;
 
 /**
  * Defines an interface representing the Provide-Location-Answer command.
@@ -311,5 +315,138 @@ public interface ProvideLocationAnswer extends DiameterMessage {
    * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already been called
    */
   void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
+
+  /**
+   * Returns true if the GERAN-Positioning-Info AVP is present in the message.
+   */
+  boolean hasGERANPositioningInfo();
+
+  /**
+   * Returns the value of the GERAN-Positioning-Info AVP, of type Grouped.
+   * 
+   * @return the value of the GERAN-Positioning-Info AVP or null if it has not been set
+   */
+  GERANPositioningInfoAvp getGERANPositioningInfo();
+
+  /**
+   * Sets the value of the GERAN-Positioning-Info AVP, of type Grouped.
+   * 
+   * @throws IllegalStateException if setGERANPositioningInfo has already been called
+   */
+  void setGERANPositioningInfo(GERANPositioningInfoAvp geranPositioningInfo);
+
+  /**
+   * Returns true if the UTRAN-Positioning-Info AVP is present in the message.
+   */
+  boolean hasUTRANPositioningInfo();
+
+  /**
+   * Returns the value of the UTRAN-Positioning-Info AVP, of type Grouped.
+   * 
+   * @return the value of the UTRAN-Positioning-Info AVP or null if it has not been set
+   */
+  UTRANPositioningInfoAvp getUTRANPositioningInfo();
+
+  /**
+   * Sets the value of the UTRAN-Positioning-Info AVP, of type Grouped.
+   * 
+   * @throws IllegalStateException if setUTRANPositioningInfo has already been called
+   */
+  void setUTRANPositioningInfo(UTRANPositioningInfoAvp utranPositioningInfo);
+
+  /**
+   * Returns true if the Serving-Node AVP is present in the message.
+   */
+  boolean hasServingNode();
+
+  /**
+   * Returns the value of the Serving-Node AVP, of type Grouped.
+   * 
+   * @return the value of the Serving-Node AVP or null if it has not been set
+   */
+  ServingNodeAvp getServingNode();
+
+  /**
+   * Sets the value of the Serving-Node AVP, of type Grouped.
+   * 
+   * @throws IllegalStateException if setServingNode has already been called
+   */
+  void setServingNode(ServingNodeAvp servingNode);
+
+  /**
+   * Returns true if the Cell-Global-Identity AVP is present in the message.
+   */
+  boolean hasCellGlobalIdentity();
+
+  /**
+   * Returns the value of the Cell-Global-Identity AVP, of type OctetString.
+   * 
+   * @return the value of the Cell-Global-Identity AVP or null if it has not been set
+   */
+  byte[] getCellGlobalIdentity();
+
+  /**
+   * Sets the value of the Cell-Global-Identity AVP, of type OctetString.
+   * 
+   * @throws IllegalStateException if setCellGlobalIdentity has already been called
+   */
+  void setCellGlobalIdentity(byte[] cellGlobalIdentity);
+
+  /**
+   * Returns true if the ESMLC-Cell-Info AVP is present in the message.
+   */
+  boolean hasESMLCCellInfo();
+
+  /**
+   * Returns the value of the ESMLC-Cell-Info AVP, of type Grouped.
+   * 
+   * @return the value of the ESMLC-Cell-Info AVP or null if it has not been set
+   */
+  ESMLCCellInfoAvp getESMLCCellInfo();
+
+  /**
+   * Sets the value of the ESMLC-Cell-Info AVP, of type Grouped.
+   * 
+   * @throws IllegalStateException if setESMLCCellInfo has already been called
+   */
+  void setESMLCCellInfo(ESMLCCellInfoAvp esmlcCellInfo);
+
+  /**
+   * Returns true if the Civic-Address AVP is present in the message.
+   */
+  boolean hasCivicAddress();
+
+  /**
+   * Returns the value of the Civic-Address AVP, of type UTF8String.
+   * 
+   * @return the value of the Civic-Address AVP or null if it has not been set
+   */
+  String getCivicAddress();
+
+  /**
+   * Sets the value of the Civic-Address AVP, of type UTF8String.
+   * 
+   * @throws IllegalStateException if setCivicAddress has already been called
+   */
+  void setCivicAddress(String civicAddress);
+
+  /**
+   * Returns true if the Barometric-Pressure AVP is present in the message.
+   */
+  boolean hasBarometricPressure();
+
+  /**
+   * Returns the value of the Barometric-Pressure AVP, of type Unsigned32.
+   * 
+   * @return the value of the Barometric-Pressure AVP or null if it has not been set
+   */
+  long getBarometricPressure();
+
+  /**
+   * Sets the value of the Barometric-Pressure AVP, of type Unsigned32.
+   * 
+   * @throws IllegalStateException if setBarometricPressure has already been called
+   */
+  void setBarometricPressure(long barometricPressure);
 
 }

@@ -23,7 +23,9 @@
 package net.java.slee.resource.diameter.slg;
 
 import net.java.slee.resource.diameter.base.DiameterMessageFactory;
+import net.java.slee.resource.diameter.base.events.DiameterHeader;
 import net.java.slee.resource.diameter.slg.events.LocationAnswer;
+import net.java.slee.resource.diameter.slg.events.LocationReportAnswer;
 import net.java.slee.resource.diameter.slg.events.LocationRequest;
 import net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer;
 import net.java.slee.resource.diameter.slg.events.ProvideLocationRequest;
@@ -108,5 +110,13 @@ public interface SLgMessageFactory {
    * @return a LocationAnswer object
    */
   LocationAnswer createLocationAnswer(LocationRequest request);
+
+  /**
+   * Create a LocationReportAnswer using the provided Diameter header.
+   * 
+   * @param header the Diameter header for the answer
+   * @return a LocationReportAnswer object
+   */
+  LocationReportAnswer createLocationReportAnswer(DiameterHeader header);
 
 }

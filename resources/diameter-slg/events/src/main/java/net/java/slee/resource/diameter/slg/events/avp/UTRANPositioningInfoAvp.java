@@ -13,4 +13,8 @@ public interface UTRANPositioningInfoAvp extends GroupedAvp {
     boolean hasUTRANGANSSPositioningData();
     byte[] getUTRANGANSSPositioningData();
     void setUTRANGANSSPositioningData(byte[] data);
+
+    boolean hasUTRANAdditionalPositioningData();
+    byte[] getUTRANAdditionalPositioningData();
+    void setUTRANAdditionalPositioningData(byte[] data);
 }

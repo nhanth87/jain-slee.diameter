@@ -24,6 +24,7 @@ package org.restcomm.slee.resource.diameter.slg;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.List;
@@ -743,6 +744,30 @@ public class SLgResourceAdaptor implements ResourceAdaptor, DiameterListener, Di
 
     public Validator getValidator() {
       return this.validator;
+    }
+
+    public net.java.slee.resource.diameter.slg.SLgClientSessionActivity createSLgClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm) throws CreateActivityException {
+      try {
+        ClientSLgSession session = ((ISessionFactory) sessionFactory).getNewAppSession(null, ApplicationId.createByAuthAppId(10415, 16777255), ClientSLgSession.class, new Object[]{});
+        SLgClientSessionActivity activity = new SLgClientSessionActivity(slgMessageFactory, slgAvpFactory, session, destinationHost, destinationRealm);
+        activityCreated(activity, false);
+        return activity;
+      }
+      catch (Exception e) {
+        throw new CreateActivityException(e);
+      }
+    }
+
+    public net.java.slee.resource.diameter.slg.SLgClientSessionActivity createSLgClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm, String sessionId) throws CreateActivityException {
+      try {
+        ClientSLgSession session = ((ISessionFactory) sessionFactory).getNewAppSession(sessionId, ApplicationId.createByAuthAppId(10415, 16777255), ClientSLgSession.class, new Object[]{});
+        SLgClientSessionActivity activity = new SLgClientSessionActivity(slgMessageFactory, slgAvpFactory, session, destinationHost, destinationRealm);
+        activityCreated(activity, false);
+        return activity;
+      }
+      catch (Exception e) {
+        throw new CreateActivityException(e);
+      }
     }
   }
 

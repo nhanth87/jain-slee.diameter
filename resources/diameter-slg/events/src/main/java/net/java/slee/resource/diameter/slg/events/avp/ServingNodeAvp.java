@@ -1,5 +1,6 @@
 package net.java.slee.resource.diameter.slg.events.avp;
 
+import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
 /**
@@ -11,26 +12,34 @@ public interface ServingNodeAvp extends GroupedAvp {
     void setSGSNNumber(byte[] sgsnNumber);
     
     boolean hasSGSNName();
-    String getSGSNName();
-    void setSGSNName(String sgsnName);
+    DiameterIdentity getSGSNName();
+    void setSGSNName(DiameterIdentity sgsnName);
     
     boolean hasSGSNRealm();
-    String getSGSNRealm();
-    void setSGSNRealm(String sgsnRealm);
+    DiameterIdentity getSGSNRealm();
+    void setSGSNRealm(DiameterIdentity sgsnRealm);
     
     boolean hasMMEName();
-    String getMMEName();
-    void setMMEName(String mmeName);
+    DiameterIdentity getMMEName();
+    void setMMEName(DiameterIdentity mmeName);
     
     boolean hasMMERealm();
-    String getMMERealm();
-    void setMMERealm(String mmeRealm);
+    DiameterIdentity getMMERealm();
+    void setMMERealm(DiameterIdentity mmeRealm);
     
     boolean hasMSCNumber();
     byte[] getMSCNumber();
     void setMSCNumber(byte[] mscNumber);
     
     boolean has3GPPAAAServerName();
-    String get3GPPAAAServerName();
-    void set3GPPAAAServerName(String aaaServerName);
+    DiameterIdentity get3GPPAAAServerName();
+    void set3GPPAAAServerName(DiameterIdentity aaaServerName);
+
+    boolean hasLcsCapabilitiesSets();
+    long getLcsCapabilitiesSets();
+    void setLcsCapabilitiesSets(long lcsCapabilitiesSets);
+
+    boolean hasGMLCAddress();
+    DiameterIdentity getGMLCAddress();
+    void setGMLCAddress(DiameterIdentity gmlcAddress);
 }

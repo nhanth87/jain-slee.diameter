@@ -59,4 +59,8 @@ public class ELPAVPCodes {
     public static final int DELAYED_LOCATION_REPORTING_SUPPORT_INDICATOR = 2546;
     public static final int MTC_PROVIDER_INFO = 2547;
     public static final int MTC_PROVIDER_ID = 2548;
+    
+    // Additional constants for Location-Report-Answer
+    public static final int LRA_FLAGS = 2715;
+    public static final int LCS_REFERENCE_NUMBER = 2526;
 }

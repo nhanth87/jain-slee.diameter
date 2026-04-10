@@ -52,6 +52,24 @@ public class SLgAvpCodes {
   public static final DiameterAvpType LCS_EPS_CLIENT_NAME_AVP_TYPE = DiameterAvpType.fromString("Grouped");
 
   /**
+   * AVP Code for LCS-Name-String AVP. Data type is UTF8String.
+   */
+  public static final int LCS_NAME_STRING = 2502;
+  public static final DiameterAvpType LCS_NAME_STRING_AVP_TYPE = DiameterAvpType.fromString("UTF8String");
+
+  /**
+   * AVP Code for LCS-Format-Indicator AVP. Data type is Enumerated.
+   */
+  public static final int LCS_FORMAT_INDICATOR = 2503;
+  public static final DiameterAvpType LCS_FORMAT_INDICATOR_AVP_TYPE = DiameterAvpType.fromString("Enumerated");
+
+  /**
+   * AVP Code for Location-Event AVP. Data type is Enumerated.
+   */
+  public static final int LOCATION_EVENT = 2513;
+  public static final DiameterAvpType LOCATION_EVENT_AVP_TYPE = DiameterAvpType.fromString("Enumerated");
+
+  /**
    * AVP Code for LCS-EPS-Client-Name-String AVP. Data type is UTF8String.
    */
   public static final int LCS_EPS_CLIENT_NAME_STRING = 2502;
@@ -202,6 +220,12 @@ public class SLgAvpCodes {
   public static final DiameterAvpType GERAN_POSITIONING_DATA_AVP_TYPE = DiameterAvpType.fromString("OctetString");
 
   /**
+   * AVP Code for GERAN-GANSS-Positioning-Data AVP. Data type is OctetString.
+   */
+  public static final int GERAN_GANSS_POSITIONING_DATA = 2524;
+  public static final DiameterAvpType GERAN_GANSS_POSITIONING_DATA_AVP_TYPE = DiameterAvpType.fromString("OctetString");
+
+  /**
    * AVP Code for UTRAN-Positioning-Info AVP. Data type is Grouped.
    */
   public static final int UTRAN_POSITIONING_INFO = 2524;
@@ -220,6 +244,12 @@ public class SLgAvpCodes {
   public static final DiameterAvpType UTRAN_GANSS_POSITIONING_DATA_AVP_TYPE = DiameterAvpType.fromString("OctetString");
 
   /**
+   * AVP Code for UTRAN-Additional-Positioning-Data AVP. Data type is OctetString.
+   */
+  public static final int UTRAN_ADDITIONAL_POSITIONING_DATA = 2528;
+  public static final DiameterAvpType UTRAN_ADDITIONAL_POSITIONING_DATA_AVP_TYPE = DiameterAvpType.fromString("OctetString");
+
+  /**
    * AVP Code for Service-Area-Identity AVP. Data type is OctetString.
    */
   public static final int SERVICE_AREA_IDENTITY = 2527;
@@ -230,6 +260,18 @@ public class SLgAvpCodes {
    */
   public static final int SERVING_NODE = 2401;
   public static final DiameterAvpType SERVING_NODE_AVP_TYPE = DiameterAvpType.fromString("Grouped");
+
+  /**
+   * AVP Code for GMLC-Address AVP. Data type is Address.
+   */
+  public static final int GMLC_ADDRESS = 2405;
+  public static final DiameterAvpType GMLC_ADDRESS_AVP_TYPE = DiameterAvpType.fromString("Address");
+
+  /**
+   * AVP Code for LCS-Capabilities-Sets AVP. Data type is Unsigned32.
+   */
+  public static final int LCS_CAPABILITIES_SETS = 2406;
+  public static final DiameterAvpType LCS_CAPABILITIES_SETS_AVP_TYPE = DiameterAvpType.fromString("Unsigned32");
 
   /**
    * AVP Code for PLA-Flags AVP. Data type is Unsigned32.
@@ -441,5 +483,89 @@ public class SLgAvpCodes {
    */
   public static final int PRIORITIZED_LIST_INDICATOR = 2532;
   public static final DiameterAvpType PRIORITIZED_LIST_INDICATOR_AVP_TYPE = DiameterAvpType.fromString("Enumerated");
+
+  /**
+   * AVP Code for Maximum-Interval AVP. Data type is Unsigned32.
+   */
+  public static final int MAXIMUM_INTERVAL = 2543;
+  public static final DiameterAvpType MAXIMUM_INTERVAL_AVP_TYPE = DiameterAvpType.fromString("Unsigned32");
+
+  /**
+   * AVP Code for Sampling-Interval AVP. Data type is Unsigned32.
+   */
+  public static final int SAMPLING_INTERVAL = 2544;
+  public static final DiameterAvpType SAMPLING_INTERVAL_AVP_TYPE = DiameterAvpType.fromString("Unsigned32");
+
+  /**
+   * AVP Code for Reporting-Duration AVP. Data type is Unsigned32.
+   */
+  public static final int REPORTING_DURATION = 2545;
+  public static final DiameterAvpType REPORTING_DURATION_AVP_TYPE = DiameterAvpType.fromString("Unsigned32");
+
+  /**
+   * AVP Code for Reporting-Location-Requirements AVP. Data type is Unsigned32.
+   */
+  public static final int REPORTING_LOCATION_REQUIREMENTS = 2546;
+  public static final DiameterAvpType REPORTING_LOCATION_REQUIREMENTS_AVP_TYPE = DiameterAvpType.fromString("Unsigned32");
+
+  /**
+   * AVP Code for ESMLC-Cell-Info AVP. Data type is Grouped.
+   */
+  public static final int ESMLC_CELL_INFO = 2551;
+  public static final DiameterAvpType ESMLC_CELL_INFO_AVP_TYPE = DiameterAvpType.fromString("Grouped");
+
+  /**
+   * AVP Code for Civic-Address AVP. Data type is UTF8String.
+   */
+  public static final int CIVIC_ADDRESS = 2552;
+  public static final DiameterAvpType CIVIC_ADDRESS_AVP_TYPE = DiameterAvpType.fromString("UTF8String");
+
+  /**
+   * AVP Code for Barometric-Pressure AVP. Data type is Unsigned32.
+   */
+  public static final int BAROMETRIC_PRESSURE = 2553;
+  public static final DiameterAvpType BAROMETRIC_PRESSURE_AVP_TYPE = DiameterAvpType.fromString("Unsigned32");
+
+  /**
+   * AVP Code for Cell-Portion-ID AVP. Data type is Integer32.
+   */
+  public static final int CELL_PORTION_ID = 2554;
+  public static final DiameterAvpType CELL_PORTION_ID_AVP_TYPE = DiameterAvpType.fromString("Integer32");
+
+  /**
+   * AVP Code for LCS-Reference-Number AVP. Data type is OctetString.
+   */
+  public static final int LCS_REFERENCE_NUMBER = 2526;
+  public static final DiameterAvpType LCS_REFERENCE_NUMBER_AVP_TYPE = DiameterAvpType.fromString("OctetString");
+
+  /**
+   * AVP Code for Deferred-MTLR-Data AVP. Data type is Grouped.
+   */
+  public static final int DEFERRED_MTLR_DATA = 2534;
+  public static final DiameterAvpType DEFERRED_MTLR_DATA_AVP_TYPE = DiameterAvpType.fromString("Grouped");
+
+  /**
+   * AVP Code for 1xRTT-RCID AVP. Data type is OctetString.
+   */
+  public static final int RTT_RCID_1X = 2713;
+  public static final DiameterAvpType RTT_RCID_1X_AVP_TYPE = DiameterAvpType.fromString("OctetString");
+
+  /**
+   * AVP Code for LRR-Flags AVP. Data type is Unsigned32.
+   */
+  public static final int LRR_FLAGS = 2714;
+  public static final DiameterAvpType LRR_FLAGS_AVP_TYPE = DiameterAvpType.fromString("Unsigned32");
+
+  /**
+   * AVP Code for LRA-Flags AVP. Data type is Unsigned32.
+   */
+  public static final int LRA_FLAGS = 2715;
+  public static final DiameterAvpType LRA_FLAGS_AVP_TYPE = DiameterAvpType.fromString("Unsigned32");
+
+  /**
+   * AVP Code for AMF-Instance-ID AVP. Data type is OctetString.
+   */
+  public static final int AMF_INSTANCE_ID = 2712;
+  public static final DiameterAvpType AMF_INSTANCE_ID_AVP_TYPE = DiameterAvpType.fromString("OctetString");
 
 }

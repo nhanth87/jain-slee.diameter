@@ -62,6 +62,25 @@ public interface SLgProvider {
   SLgActivity createSLgActivity() throws CreateActivityException;
 
   /**
+   * Create a new SLg client session activity to send and receive Diameter SLg messages.
+   * @param destinationHost the destination host
+   * @param destinationRealm the destination realm
+   * @return an SLgClientSessionActivity
+   * @throws CreateActivityException if the RA could not create the activity for any reason
+   */
+  SLgClientSessionActivity createSLgClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm) throws CreateActivityException;
+
+  /**
+   * Create a new SLg client session activity to send and receive Diameter SLg messages.
+   * @param destinationHost the destination host
+   * @param destinationRealm the destination realm
+   * @param sessionId optional session ID
+   * @return an SLgClientSessionActivity
+   * @throws CreateActivityException if the RA could not create the activity for any reason
+   */
+  SLgClientSessionActivity createSLgClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm, String sessionId) throws CreateActivityException;
+
+  /**
    * Sends a synchronous ProvideLocationRequest which will block until an answer is received from the peer.
    *
    * @param message created using the MessageFactory

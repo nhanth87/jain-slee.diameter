@@ -103,4 +103,80 @@ public interface AreaEventInfoAvp extends GroupedAvp {
    */
   void setIntervalTime(long intervalTime);
 
+  /**
+   * Returns true if the Maximum-Interval AVP is present in the message.
+   */
+  boolean hasMaximumInterval();
+
+  /**
+   * Returns the value of the Maximum-Interval AVP, of type Unsigned32.
+   * 
+   * @return the value of the Maximum-Interval AVP or null if it has not been set
+   */
+  long getMaximumInterval();
+
+  /**
+   * Sets the value of the Maximum-Interval AVP, of type Unsigned32.
+   * 
+   * @throws IllegalStateException if setMaximumInterval has already been called
+   */
+  void setMaximumInterval(long maximumInterval);
+
+  /**
+   * Returns true if the Sampling-Interval AVP is present in the message.
+   */
+  boolean hasSamplingInterval();
+
+  /**
+   * Returns the value of the Sampling-Interval AVP, of type Unsigned32.
+   * 
+   * @return the value of the Sampling-Interval AVP or null if it has not been set
+   */
+  long getSamplingInterval();
+
+  /**
+   * Sets the value of the Sampling-Interval AVP, of type Unsigned32.
+   * 
+   * @throws IllegalStateException if setSamplingInterval has already been called
+   */
+  void setSamplingInterval(long samplingInterval);
+
+  /**
+   * Returns true if the Reporting-Duration AVP is present in the message.
+   */
+  boolean hasReportDuration();
+
+  /**
+   * Returns the value of the Reporting-Duration AVP, of type Unsigned32.
+   * 
+   * @return the value of the Reporting-Duration AVP or null if it has not been set
+   */
+  long getReportDuration();
+
+  /**
+   * Sets the value of the Reporting-Duration AVP, of type Unsigned32.
+   * 
+   * @throws IllegalStateException if setReportDuration has already been called
+   */
+  void setReportDuration(long reportDuration);
+
+  /**
+   * Returns true if the Reporting-Location-Requirements AVP is present in the message.
+   */
+  boolean hasReportingLocationRequirements();
+
+  /**
+   * Returns the value of the Reporting-Location-Requirements AVP, of type Unsigned32.
+   * 
+   * @return the value of the Reporting-Location-Requirements AVP or null if it has not been set
+   */
+  long getReportingLocationRequirements();
+
+  /**
+   * Sets the value of the Reporting-Location-Requirements AVP, of type Unsigned32.
+   * 
+   * @throws IllegalStateException if setReportingLocationRequirements has already been called
+   */
+  void setReportingLocationRequirements(long reportingLocationRequirements);
+
 }

@@ -24,12 +24,14 @@ package org.restcomm.slee.resource.diameter.slg;
 
 import java.io.IOException;
 
+import net.java.slee.resource.diameter.base.events.DiameterHeader;
 import net.java.slee.resource.diameter.base.events.DiameterMessage;
 import net.java.slee.resource.diameter.base.events.avp.AvpNotAllowedException;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.slg.SLgAVPFactory;
 import net.java.slee.resource.diameter.slg.SLgActivity;
 import net.java.slee.resource.diameter.slg.SLgMessageFactory;
+import net.java.slee.resource.diameter.slg.events.LocationReportAnswer;
 import net.java.slee.resource.diameter.slg.events.LocationRequest;
 import net.java.slee.resource.diameter.slg.events.ProvideLocationRequest;
 
@@ -51,7 +53,7 @@ import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @see SLgActivity
  */
-public class SLgClientSessionActivity extends DiameterActivityImpl implements SLgActivity, StateChangeListener<AppSession> {
+public class SLgClientSessionActivity extends DiameterActivityImpl implements net.java.slee.resource.diameter.slg.SLgClientSessionActivity, StateChangeListener<AppSession> {
 
   private static final long serialVersionUID = 1L;
 
@@ -73,7 +75,7 @@ public class SLgClientSessionActivity extends DiameterActivityImpl implements SL
     this.clientSession.addStateChangeNotification(this);
   }
 
-  public void sendProvideLocationRequest(ProvideLocationRequest message) throws IOException {
+  public void sendProvideLocationRequest(net.java.slee.resource.diameter.slg.events.ProvideLocationRequest message) {
     try {
       DiameterMessageImpl msg = (DiameterMessageImpl) message;
       clientSession.sendProvideLocationRequest(new org.jdiameter.common.impl.app.slg.ProvideLocationRequestImpl((Request) msg.getGenericData()));
@@ -82,7 +84,7 @@ public class SLgClientSessionActivity extends DiameterActivityImpl implements SL
       throw new AvpNotAllowedException("Message validation failed.", e, e.getAvpCode(), e.getVendorId());
     }
     catch (Exception e) {
-      throw new IOException("Failed to send message, due to: " + e.getLocalizedMessage());
+      throw new RuntimeException("Failed to send message, due to: " + e.getLocalizedMessage(), e);
     }
   }
 
@@ -137,6 +139,31 @@ public class SLgClientSessionActivity extends DiameterActivityImpl implements SL
 
   ClientSLgSession getClientSession() {
     return this.clientSession;
+  }
+
+  public DiameterIdentity getDestinationHost() {
+    return destinationHost;
+  }
+
+  public DiameterIdentity getDestinationRealm() {
+    return destinationRealm;
+  }
+
+  public LocationReportAnswer createLocationReportAnswer(DiameterHeader header) {
+    return this.messageFactory.createLocationReportAnswer(header);
+  }
+
+  public void sendLocationReportAnswer(LocationReportAnswer message) {
+    try {
+      DiameterMessageImpl msg = (DiameterMessageImpl) message;
+      clientSession.sendLocationReportAnswer(new org.jdiameter.common.impl.app.slg.LocationReportAnswerImpl((Answer) msg.getGenericData()));
+    }
+    catch (org.jdiameter.api.validation.AvpNotAllowedException e) {
+      throw new AvpNotAllowedException("Message validation failed.", e, e.getAvpCode(), e.getVendorId());
+    }
+    catch (Exception e) {
+      throw new RuntimeException("Failed to send message, due to: " + e.getLocalizedMessage(), e);
+    }
   }
 
   @Override

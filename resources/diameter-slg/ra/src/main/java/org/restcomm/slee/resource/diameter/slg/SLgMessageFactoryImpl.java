@@ -28,6 +28,8 @@ import net.java.slee.resource.diameter.base.events.avp.DiameterAvp;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.slg.SLgMessageFactory;
 import net.java.slee.resource.diameter.slg.events.LocationAnswer;
+import net.java.slee.resource.diameter.slg.events.LocationReportAnswer;
+import net.java.slee.resource.diameter.slg.events.LocationReportRequest;
 import net.java.slee.resource.diameter.slg.events.LocationRequest;
 import net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer;
 import net.java.slee.resource.diameter.slg.events.ProvideLocationRequest;
@@ -42,6 +44,8 @@ import org.mobicents.slee.resource.diameter.base.DiameterMessageFactoryImpl;
 import org.mobicents.slee.resource.diameter.base.events.ExtensionDiameterMessageImpl;
 import org.mobicents.slee.resource.diameter.base.events.avp.ExperimentalResultAvpImpl;
 import org.restcomm.slee.resource.diameter.slg.events.LocationAnswerImpl;
+import org.restcomm.slee.resource.diameter.slg.events.LocationReportAnswerImpl;
+import org.restcomm.slee.resource.diameter.slg.events.LocationReportRequestImpl;
 import org.restcomm.slee.resource.diameter.slg.events.LocationRequestImpl;
 import org.restcomm.slee.resource.diameter.slg.events.ProvideLocationAnswerImpl;
 import org.restcomm.slee.resource.diameter.slg.events.ProvideLocationRequestImpl;
@@ -125,6 +129,9 @@ public class SLgMessageFactoryImpl extends DiameterMessageFactoryImpl implements
         break;
       case LocationRequest.commandCode:
         diamMessage = creatingRequest ? new LocationRequestImpl(msg) : new LocationAnswerImpl(msg);
+        break;
+      case LocationReportRequest.commandCode:
+        diamMessage = creatingRequest ? new LocationReportRequestImpl(msg) : new LocationReportAnswerImpl(msg);
         break;
       default:
         diamMessage = new ExtensionDiameterMessageImpl(msg);
@@ -224,6 +231,16 @@ public class SLgMessageFactoryImpl extends DiameterMessageFactoryImpl implements
     }
 
     return answer;
+  }
+
+  // Location Report Messages -----------------------------------------
+
+  public LocationReportAnswer createLocationReportAnswer(DiameterHeader header) {
+    try {
+      return (LocationReportAnswer) createSlgMessage(header, EMPTY_AVP_ARRAY, LocationReportRequest.commandCode, slgAppId);
+    } catch (InternalException e) {
+      throw new IllegalStateException("Failed to create Location-Report-Answer", e);
+    }
   }
 
   // Base Message Factory ---------------------------------------------
