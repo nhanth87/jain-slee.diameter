@@ -22,11 +22,7 @@
 
 package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.PublicIdentityExtension;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.PublicIdentityExtension2;
@@ -53,20 +49,13 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.PublicIdentityExte
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tPublicIdentityExtension", propOrder = {
-    "identityType",
-    "wildcardedPSI",
-    "extension"
-})
 public class TPublicIdentityExtension implements PublicIdentityExtension {
 
-    @XmlElement(name = "IdentityType")
+    @JacksonXmlProperty(localName = "IdentityType")
     protected Short identityType;
-    @XmlElement(name = "WildcardedPSI")
-    @XmlSchemaType(name = "anyURI")
+    @JacksonXmlProperty(localName = "WildcardedPSI")
     protected String wildcardedPSI;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TPublicIdentityExtension2 extension;
 
     /* (non-Javadoc)

@@ -24,12 +24,9 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ISDNAddress;
@@ -56,17 +53,11 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.ISDNAddress;
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tISDNAddress", propOrder = {
-    "address",
-    "extension",
-    "any"
-})
 public class TISDNAddress implements ISDNAddress {
 
-    @XmlElement(name = "Address", required = true)
+    @JacksonXmlProperty(localName = "Address")
     protected List<String> address;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TExtension extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;

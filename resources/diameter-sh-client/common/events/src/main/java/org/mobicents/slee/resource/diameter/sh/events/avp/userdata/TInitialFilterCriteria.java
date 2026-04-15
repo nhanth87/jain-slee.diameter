@@ -24,12 +24,9 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ApplicationServer;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
@@ -60,23 +57,15 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.Trigger;
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tInitialFilterCriteria", propOrder = {
-    "priority",
-    "triggerPoint",
-    "applicationServer",
-    "extension",
-    "any"
-})
 public class TInitialFilterCriteria implements InitialFilterCriteria {
 
-    @XmlElement(name = "Priority")
+    @JacksonXmlProperty(localName = "Priority")
     protected int priority;
-    @XmlElement(name = "TriggerPoint")
+    @JacksonXmlProperty(localName = "TriggerPoint")
     protected TTrigger triggerPoint;
-    @XmlElement(name = "ApplicationServer", required = true)
+    @JacksonXmlProperty(localName = "ApplicationServer")
     protected TApplicationServer applicationServer;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TExtension extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;

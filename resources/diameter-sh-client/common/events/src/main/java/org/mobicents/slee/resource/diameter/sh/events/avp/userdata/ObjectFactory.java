@@ -22,10 +22,6 @@
 
 package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlElementDecl;
-import javax.xml.bind.annotation.XmlRegistry;
-import javax.xml.namespace.QName;
 
 /**
  * This object contains factory methods for each  Java content interface and Java element interface 
@@ -37,10 +33,7 @@ import javax.xml.namespace.QName;
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlRegistry
 public class ObjectFactory {
-
-    private final static QName _ShData_QNAME = new QName("", "Sh-Data");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes
@@ -235,9 +228,8 @@ public class ObjectFactory {
     /* (non-Javadoc)
      * @see org.mobicents.slee.resource.diameter.sh.events.avp.userdata.UserDataObjectFactory#createShData(org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShData)
      */
-    @XmlElementDecl(namespace = "", name = "Sh-Data")
-    public JAXBElement<TShData> createShData(TShData value) {
-        return new JAXBElement<TShData>(_ShData_QNAME, TShData.class, null, value);
+    public TShData createShData(TShData value) {
+        return value;
     }
 
 }

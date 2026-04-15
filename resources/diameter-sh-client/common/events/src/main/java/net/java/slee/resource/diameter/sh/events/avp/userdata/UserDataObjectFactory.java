@@ -22,9 +22,6 @@
 
 package net.java.slee.resource.diameter.sh.events.avp.userdata;
 
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlElementDecl;
-
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TApplicationServer;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TCSLocationInformation;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TChargingInformation;
@@ -212,10 +209,9 @@ public interface UserDataObjectFactory {
   public abstract SePoTri createSePoTri();
 
   /**
-   * Create an instance of {@link JAXBElement }{@code <}{@link TShData }{@code >}}
+   * Create an instance of {@link TShData }
    * 
    */
-  @XmlElementDecl(namespace = "", name = "Sh-Data")
-  public abstract JAXBElement<TShData> createShData(TShData value);
+  public abstract TShData createShData(TShData value);
 
 }

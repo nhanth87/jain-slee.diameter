@@ -24,12 +24,9 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.CSLocationInformation;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
@@ -68,44 +65,29 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.ISDNAddress;
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tCSLocationInformation", propOrder = {
-    "locationNumber",
-    "cellGlobalId",
-    "serviceAreaId",
-    "locationAreaId",
-    "geographicalInformation",
-    "geodeticInformation",
-    "vlrNumber",
-    "mscNumber",
-    "currentLocationRetrieved",
-    "ageOfLocationInformation",
-    "extension",
-    "any"
-})
 public class TCSLocationInformation implements CSLocationInformation {
 
-    @XmlElement(name = "LocationNumber")
+    @JacksonXmlProperty(localName = "LocationNumber")
     protected String locationNumber;
-    @XmlElement(name = "CellGlobalId")
+    @JacksonXmlProperty(localName = "CellGlobalId")
     protected String cellGlobalId;
-    @XmlElement(name = "ServiceAreaId")
+    @JacksonXmlProperty(localName = "ServiceAreaId")
     protected String serviceAreaId;
-    @XmlElement(name = "LocationAreaId")
+    @JacksonXmlProperty(localName = "LocationAreaId")
     protected String locationAreaId;
-    @XmlElement(name = "GeographicalInformation")
+    @JacksonXmlProperty(localName = "GeographicalInformation")
     protected String geographicalInformation;
-    @XmlElement(name = "GeodeticInformation")
+    @JacksonXmlProperty(localName = "GeodeticInformation")
     protected String geodeticInformation;
-    @XmlElement(name = "VLRNumber")
+    @JacksonXmlProperty(localName = "VLRNumber")
     protected TISDNAddress vlrNumber;
-    @XmlElement(name = "MSCNumber")
+    @JacksonXmlProperty(localName = "MSCNumber")
     protected TISDNAddress mscNumber;
-    @XmlElement(name = "CurrentLocationRetrieved")
+    @JacksonXmlProperty(localName = "CurrentLocationRetrieved")
     protected Boolean currentLocationRetrieved;
-    @XmlElement(name = "AgeOfLocationInformation")
+    @JacksonXmlProperty(localName = "AgeOfLocationInformation")
     protected Integer ageOfLocationInformation;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TExtension extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;

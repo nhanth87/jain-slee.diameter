@@ -24,12 +24,9 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.Header;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.SePoTri;
@@ -66,35 +63,23 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.SessionDescription
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tSePoTri", propOrder = {
-    "conditionNegated",
-    "group",
-    "requestURI",
-    "method",
-    "sipHeader",
-    "sessionCase",
-    "sessionDescription",
-    "extension",
-    "any"
-})
 public class TSePoTri implements SePoTri {
 
-    @XmlElement(name = "ConditionNegated")
+    @JacksonXmlProperty(localName = "ConditionNegated")
     protected Boolean conditionNegated;
-    @XmlElement(name = "Group", type = Integer.class)
+    @JacksonXmlProperty(localName = "Group")
     protected List<Integer> group;
-    @XmlElement(name = "RequestURI")
+    @JacksonXmlProperty(localName = "RequestURI")
     protected String requestURI;
-    @XmlElement(name = "Method")
+    @JacksonXmlProperty(localName = "Method")
     protected String method;
-    @XmlElement(name = "SIPHeader")
+    @JacksonXmlProperty(localName = "SIPHeader")
     protected THeader sipHeader;
-    @XmlElement(name = "SessionCase")
+    @JacksonXmlProperty(localName = "SessionCase")
     protected Short sessionCase;
-    @XmlElement(name = "SessionDescription")
+    @JacksonXmlProperty(localName = "SessionDescription")
     protected TSessionDescription sessionDescription;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TSePoTriExtension extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;

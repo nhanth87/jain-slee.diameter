@@ -22,7 +22,6 @@
 
 package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
-import javax.xml.bind.JAXBElement;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ApplicationServer;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.CSLocationInformation;
@@ -162,7 +161,7 @@ public class UserDataObjectFactoryImpl implements UserDataObjectFactory {
     return objectFactory.createSePoTri();
   }
 
-  public JAXBElement<TShData> createShData(TShData value) {
+  public TShData createShData(TShData value) {
     return objectFactory.createShData(value);
   }
 

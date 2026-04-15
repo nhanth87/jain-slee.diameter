@@ -22,10 +22,7 @@
 
 package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ServiceData;
 
@@ -49,10 +46,6 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.ServiceData;
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tServiceData", propOrder = {
-    "any"
-})
 public class TServiceData implements ServiceData {
 
     @XmlAnyElement(lax = true)

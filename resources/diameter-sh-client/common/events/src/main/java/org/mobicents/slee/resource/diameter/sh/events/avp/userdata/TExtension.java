@@ -25,10 +25,7 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
 
@@ -52,10 +49,6 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tExtension", propOrder = {
-    "any"
-})
 public class TExtension implements Extension {
 
     @XmlAnyElement(lax = true)

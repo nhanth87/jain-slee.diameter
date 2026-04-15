@@ -24,10 +24,7 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ShIMSDataExtension2;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ShIMSDataExtension3;
@@ -53,16 +50,11 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.ShIMSDataExtension
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tShIMSDataExtension2", propOrder = {
-    "dsai",
-    "extension"
-})
 public class TShIMSDataExtension2 implements ShIMSDataExtension2 {
 
-    @XmlElement(name = "DSAI")
+    @JacksonXmlProperty(localName = "DSAI")
     protected List<TDSAI> dsai;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TShIMSDataExtension3 extension;
 
     /* (non-Javadoc)

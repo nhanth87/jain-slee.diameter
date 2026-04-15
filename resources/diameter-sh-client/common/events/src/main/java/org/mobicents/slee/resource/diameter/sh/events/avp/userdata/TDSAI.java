@@ -22,12 +22,9 @@
 
 package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.DSAI;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 
 /**
@@ -50,16 +47,11 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.DSAI;
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tDSAI", propOrder = {
-    "dsaiTag",
-    "dsaiValue"
-})
 public class TDSAI implements DSAI {
 
-    @XmlElement(name = "DSAI-Tag", required = true)
+    @JacksonXmlProperty(localName = "DSAI-Tag")
     protected String dsaiTag;
-    @XmlElement(name = "DSAI-Value")
+    @JacksonXmlProperty(localName = "DSAI-Value")
     protected short dsaiValue;
 
     /* (non-Javadoc)

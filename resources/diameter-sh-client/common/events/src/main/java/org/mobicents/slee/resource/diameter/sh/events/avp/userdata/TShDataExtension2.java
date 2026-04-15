@@ -24,12 +24,9 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.PublicIdentity;
@@ -57,17 +54,11 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.ShDataExtension2;
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tSh-Data-Extension2", propOrder = {
-    "deletedIdentities",
-    "extension",
-    "any"
-})
 public class TShDataExtension2 implements ShDataExtension2 {
 
-    @XmlElement(name = "DeletedIdentities")
+    @JacksonXmlProperty(localName = "DeletedIdentities")
     protected TPublicIdentity deletedIdentities;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TExtension extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;

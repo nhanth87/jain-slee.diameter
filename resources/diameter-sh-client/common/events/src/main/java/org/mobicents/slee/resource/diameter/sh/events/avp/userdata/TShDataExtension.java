@@ -24,12 +24,9 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.PublicIdentity;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ShDataExtension;
@@ -61,29 +58,19 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.ShDataExtension2;
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tSh-Data-Extension", propOrder = {
-    "registeredIdentities",
-    "implicitIdentities",
-    "allIdentities",
-    "aliasIdentities",
-    "aliasesRepositoryData",
-    "extension",
-    "any"
-})
 public class TShDataExtension implements ShDataExtension {
 
-    @XmlElement(name = "RegisteredIdentities")
+    @JacksonXmlProperty(localName = "RegisteredIdentities")
     protected TPublicIdentity registeredIdentities;
-    @XmlElement(name = "ImplicitIdentities")
+    @JacksonXmlProperty(localName = "ImplicitIdentities")
     protected TPublicIdentity implicitIdentities;
-    @XmlElement(name = "AllIdentities")
+    @JacksonXmlProperty(localName = "AllIdentities")
     protected TPublicIdentity allIdentities;
-    @XmlElement(name = "AliasIdentities")
+    @JacksonXmlProperty(localName = "AliasIdentities")
     protected TPublicIdentity aliasIdentities;
-    @XmlElement(name = "AliasesRepositoryData")
+    @JacksonXmlProperty(localName = "AliasesRepositoryData")
     protected List<TTransparentData> aliasesRepositoryData;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TShDataExtension2 extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;

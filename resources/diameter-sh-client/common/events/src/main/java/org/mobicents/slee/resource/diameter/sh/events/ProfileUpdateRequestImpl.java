@@ -27,11 +27,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 
 import net.java.slee.resource.diameter.sh.events.ProfileUpdateRequest;
 import net.java.slee.resource.diameter.sh.events.avp.DataReferenceType;
@@ -82,19 +79,7 @@ import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.UserDataObjec
 public class ProfileUpdateRequestImpl extends DiameterShMessageImpl implements ProfileUpdateRequest {
 
   private static final long serialVersionUID = -5829214729454907100L;
-
-  private static JAXBContext jaxbContext = initJAXBContext();
-  private static UserDataObjectFactory udof = new UserDataObjectFactoryImpl(new ObjectFactory());
-
-  private static JAXBContext initJAXBContext() {
-    try {
-      return JAXBContext.newInstance(org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShData.class);
-    }
-    catch (Exception e) {
-      // we can't throw exception
-      return null;
-    }
-  }
+  private static final XmlMapper xmlMapper = new XmlMapper();
 
   /**
    * 
@@ -179,18 +164,13 @@ public class ProfileUpdateRequestImpl extends DiameterShMessageImpl implements P
    * @see net.java.slee.resource.diameter.sh.events.ProfileUpdateRequest#getUserDataObject()
    */
   public ShData getUserDataObject() throws IOException {
-    ShData shDataObject = null;
     try {
-      Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-
       byte[] data = getAvpAsRaw(DiameterShAvpCodes.USER_DATA, DiameterShAvpCodes.SH_VENDOR_ID);
-      JAXBElement<TShData> jaxbElem = udof.createShData((TShData) unmarshaller.unmarshal(new ByteArrayInputStream(data)));
-      shDataObject = (ShData) jaxbElem.getValue();
+      return xmlMapper.readValue(new ByteArrayInputStream(data), TShData.class);
     }
     catch (Exception e) {
-      throw new IOException("Failed to unmarshal User-Data AVP into JAXB Object", e);
+      throw new IOException("Failed to unmarshal User-Data AVP into Object", e);
     }
-    return shDataObject;
   }
 
   /* 
@@ -218,49 +198,12 @@ public class ProfileUpdateRequestImpl extends DiameterShMessageImpl implements P
    */
   public void setUserDataObject(ShData userData, Class<?>... classes) throws IOException {
     try {
-
-      List<Class<?>> ctxClasses = new ArrayList<Class<?>>();
-      ctxClasses.add(ObjectFactory.class);
-      ctxClasses.add(TIFCs.class);
-      ctxClasses.add(TSePoTri.class);
-      ctxClasses.add(TShIMSData.class);
-      ctxClasses.add(TApplicationServer.class);
-      ctxClasses.add(TISDNAddress.class);
-      ctxClasses.add(TSePoTriExtension.class);
-      ctxClasses.add(TShIMSDataExtension.class);
-      ctxClasses.add(TCSLocationInformation.class);
-      ctxClasses.add(TInitialFilterCriteria.class);
-      ctxClasses.add(TServiceData.class);
-      ctxClasses.add(TShIMSDataExtension2.class);
-      ctxClasses.add(TChargingInformation.class);
-      ctxClasses.add(TPSLocationInformation.class);
-      ctxClasses.add(TSessionDescription.class);
-      ctxClasses.add(TShIMSDataExtension3.class);
-      ctxClasses.add(TDSAI.class);
-      ctxClasses.add(TPublicIdentity.class);
-      ctxClasses.add(TShData.class);
-      ctxClasses.add(TTransparentData.class);
-      ctxClasses.add(TExtension.class);
-      ctxClasses.add(TPublicIdentityExtension.class);
-      ctxClasses.add(TShDataExtension.class);
-      ctxClasses.add(TTrigger.class);
-      ctxClasses.add(THeader.class);
-      ctxClasses.add(TPublicIdentityExtension2.class);
-      ctxClasses.add(TShDataExtension2.class);
-      //ctxClasses.add(UserDataObjectFactoryImpl.class);
-
-      for(Class<?> clazz : classes) {
-        ctxClasses.add(clazz);
-      }
-
-      Marshaller marshaller =  JAXBContext.newInstance(ctxClasses.toArray(new Class[ctxClasses.size()])).createMarshaller();
-
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      marshaller.marshal(userData, baos);
+      xmlMapper.writeValue(baos, userData);
       addAvp(DiameterShAvpCodes.USER_DATA, DiameterShAvpCodes.SH_VENDOR_ID, baos.toByteArray());
     }
     catch (Exception e) {
-      throw new IOException("Failed to marshal JAXB Object to User-Data AVP", e);
+      throw new IOException("Failed to marshal Object to User-Data AVP", e);
     }
   }
 

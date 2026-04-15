@@ -24,12 +24,9 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.Trigger;
@@ -57,20 +54,13 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.Trigger;
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tTrigger", propOrder = {
-    "conditionTypeCNF",
-    "spt",
-    "extension",
-    "any"
-})
 public class TTrigger implements Trigger {
 
-    @XmlElement(name = "ConditionTypeCNF")
+    @JacksonXmlProperty(localName = "ConditionTypeCNF")
     protected boolean conditionTypeCNF;
-    @XmlElement(name = "SPT")
+    @JacksonXmlProperty(localName = "SPT")
     protected List<TSePoTri> spt;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TExtension extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;

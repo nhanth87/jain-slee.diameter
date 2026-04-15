@@ -24,10 +24,7 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.SePoTriExtension;
@@ -53,16 +50,11 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.SePoTriExtension;
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tSePoTriExtension", propOrder = {
-    "registrationType",
-    "extension"
-})
 public class TSePoTriExtension implements SePoTriExtension {
 
-    @XmlElement(name = "RegistrationType", type = Short.class)
+    @JacksonXmlProperty(localName = "RegistrationType")
     protected List<Short> registrationType;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TExtension extension;
 
     /* (non-Javadoc)

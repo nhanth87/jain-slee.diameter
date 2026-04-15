@@ -22,13 +22,10 @@
 
 package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ShIMSDataExtension;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ShIMSDataExtension2;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 
 /**
@@ -51,16 +48,11 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.ShIMSDataExtension
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tShIMSDataExtension", propOrder = {
-    "psiActivation",
-    "extension"
-})
 public class TShIMSDataExtension implements ShIMSDataExtension {
 
-    @XmlElement(name = "PSIActivation")
+    @JacksonXmlProperty(localName = "PSIActivation")
     protected Short psiActivation;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TShIMSDataExtension2 extension;
 
     /* (non-Javadoc)

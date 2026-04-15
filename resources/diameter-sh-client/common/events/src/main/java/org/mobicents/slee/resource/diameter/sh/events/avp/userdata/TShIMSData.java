@@ -24,12 +24,9 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ChargingInformation;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.IFCs;
@@ -61,26 +58,17 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.ShIMSDataExtension
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tShIMSData", propOrder = {
-    "scscfName",
-    "ifCs",
-    "imsUserState",
-    "chargingInformation",
-    "extension",
-    "any"
-})
 public class TShIMSData implements ShIMSData {
 
-    @XmlElement(name = "SCSCFName")
+    @JacksonXmlProperty(localName = "SCSCFName")
     protected String scscfName;
-    @XmlElement(name = "IFCs")
+    @JacksonXmlProperty(localName = "IFCs")
     protected TIFCs ifCs;
-    @XmlElement(name = "IMSUserState")
+    @JacksonXmlProperty(localName = "IMSUserState")
     protected Short imsUserState;
-    @XmlElement(name = "ChargingInformation")
+    @JacksonXmlProperty(localName = "ChargingInformation")
     protected TChargingInformation chargingInformation;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TShIMSDataExtension extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;

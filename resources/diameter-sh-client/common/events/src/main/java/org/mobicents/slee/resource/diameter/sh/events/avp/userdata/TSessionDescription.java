@@ -24,12 +24,9 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.SessionDescription;
@@ -57,20 +54,13 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.SessionDescription
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tSessionDescription", propOrder = {
-    "line",
-    "content",
-    "extension",
-    "any"
-})
 public class TSessionDescription implements SessionDescription {
 
-    @XmlElement(name = "Line", required = true)
+    @JacksonXmlProperty(localName = "Line")
     protected String line;
-    @XmlElement(name = "Content")
+    @JacksonXmlProperty(localName = "Content")
     protected String content;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TExtension extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;

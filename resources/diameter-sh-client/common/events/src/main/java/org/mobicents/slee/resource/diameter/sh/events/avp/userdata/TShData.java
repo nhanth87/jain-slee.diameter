@@ -26,16 +26,11 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.CSLocationInformation;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.PSLocationInformation;
@@ -72,36 +67,24 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.ShIMSData;
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tSh-Data", propOrder = {
-    "publicIdentifiers",
-    "repositoryData",
-    "shIMSData",
-    "csLocationInformation",
-    "psLocationInformation",
-    "csUserState",
-    "psUserState",
-    "extension",
-    "any"
-})
+@JacksonXmlRootElement
 public class TShData implements ShData {
 
-    @XmlElement(name = "PublicIdentifiers")
+    @JacksonXmlProperty(localName = "PublicIdentifiers")
     protected TPublicIdentity publicIdentifiers;
-    @XmlElement(name = "RepositoryData")
+    @JacksonXmlProperty(localName = "RepositoryData")
     protected List<TTransparentData> repositoryData;
-    @XmlElement(name = "Sh-IMS-Data")
+    @JacksonXmlProperty(localName = "Sh-IMS-Data")
     protected TShIMSData shIMSData;
-    @XmlElement(name = "CSLocationInformation")
+    @JacksonXmlProperty(localName = "CSLocationInformation")
     protected TCSLocationInformation csLocationInformation;
-    @XmlElement(name = "PSLocationInformation")
+    @JacksonXmlProperty(localName = "PSLocationInformation")
     protected TPSLocationInformation psLocationInformation;
-    @XmlElement(name = "CSUserState")
+    @JacksonXmlProperty(localName = "CSUserState")
     protected Short csUserState;
-    @XmlElement(name = "PSUserState")
+    @JacksonXmlProperty(localName = "PSUserState")
     protected Short psUserState;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TShDataExtension extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;
@@ -227,16 +210,15 @@ public class TShData implements ShData {
     @Override
     public boolean equals(Object obj) {
       if(obj != null && obj.getClass().equals(this.getClass())) {
-        // ugly, but it works
         try {
-          Marshaller marshaller = JAXBContext.newInstance("org.mobicents.slee.resource.diameter.sh.events.avp.userdata", getClass().getClassLoader()).createMarshaller();
+          XmlMapper xmlMapper = new XmlMapper();
           ByteArrayOutputStream baosThis = new ByteArrayOutputStream();
-          marshaller.marshal(this, baosThis);
+          xmlMapper.writeValue(baosThis, this);
           ByteArrayOutputStream baosOther = new ByteArrayOutputStream();
-          marshaller.marshal(this, baosOther);
+          xmlMapper.writeValue(baosOther, obj);
           return Arrays.equals(baosThis.toByteArray(), baosOther.toByteArray());
         }
-        catch (JAXBException e) {
+        catch (Exception e) {
           return false;
         }
       }

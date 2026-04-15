@@ -24,12 +24,9 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.PublicIdentity;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.PublicIdentityExtension;
@@ -57,20 +54,13 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.PublicIdentityExte
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tPublicIdentity", propOrder = {
-    "imsPublicIdentity",
-    "msisdn",
-    "extension",
-    "any"
-})
 public class TPublicIdentity implements PublicIdentity {
 
-    @XmlElement(name = "IMSPublicIdentity")
+    @JacksonXmlProperty(localName = "IMSPublicIdentity")
     protected List<String> imsPublicIdentity;
-    @XmlElement(name = "MSISDN")
+    @JacksonXmlProperty(localName = "MSISDN")
     protected List<String> msisdn;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TPublicIdentityExtension extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;

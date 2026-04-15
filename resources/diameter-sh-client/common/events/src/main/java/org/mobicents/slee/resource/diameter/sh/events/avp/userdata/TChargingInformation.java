@@ -24,12 +24,9 @@ package org.mobicents.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ChargingInformation;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
@@ -59,26 +56,17 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tChargingInformation", propOrder = {
-    "primaryEventChargingFunctionName",
-    "secondaryEventChargingFunctionName",
-    "primaryChargingCollectionFunctionName",
-    "secondaryChargingCollectionFunctionName",
-    "extension",
-    "any"
-})
 public class TChargingInformation implements ChargingInformation {
 
-    @XmlElement(name = "PrimaryEventChargingFunctionName")
+    @JacksonXmlProperty(localName = "PrimaryEventChargingFunctionName")
     protected String primaryEventChargingFunctionName;
-    @XmlElement(name = "SecondaryEventChargingFunctionName")
+    @JacksonXmlProperty(localName = "SecondaryEventChargingFunctionName")
     protected String secondaryEventChargingFunctionName;
-    @XmlElement(name = "PrimaryChargingCollectionFunctionName")
+    @JacksonXmlProperty(localName = "PrimaryChargingCollectionFunctionName")
     protected String primaryChargingCollectionFunctionName;
-    @XmlElement(name = "SecondaryChargingCollectionFunctionName")
+    @JacksonXmlProperty(localName = "SecondaryChargingCollectionFunctionName")
     protected String secondaryChargingCollectionFunctionName;
-    @XmlElement(name = "Extension")
+    @JacksonXmlProperty(localName = "Extension")
     protected TExtension extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;

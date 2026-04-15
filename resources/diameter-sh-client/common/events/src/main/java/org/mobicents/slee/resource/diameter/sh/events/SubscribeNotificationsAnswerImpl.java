@@ -25,11 +25,8 @@ package org.mobicents.slee.resource.diameter.sh.events;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 
 import java.util.Date;
 
@@ -57,19 +54,7 @@ import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.UserDataObjec
 public class SubscribeNotificationsAnswerImpl extends DiameterShMessageImpl implements SubscribeNotificationsAnswer {
 
   private static final long serialVersionUID = -66848235143082970L;
-
-  private static JAXBContext jaxbContext = initJAXBContext();
-  private static UserDataObjectFactory udof = new UserDataObjectFactoryImpl(new ObjectFactory());
-
-  private static JAXBContext initJAXBContext() {
-    try {
-      return JAXBContext.newInstance(org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShData.class);
-    }
-    catch (Exception e) {
-      // we can't throw exception
-      return null;
-    }
-  }
+  private static final XmlMapper xmlMapper = new XmlMapper();
   
   /**
    * 
@@ -152,18 +137,13 @@ public class SubscribeNotificationsAnswerImpl extends DiameterShMessageImpl impl
    * @see net.java.slee.resource.diameter.sh.events.SubscribeNotificationsAnswer#getUserDataObject()
    */
   public ShData getUserDataObject() throws IOException {
-    ShData shDataObject = null;
     try {
-      Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-
       byte[] data = getAvpAsRaw(DiameterShAvpCodes.USER_DATA, DiameterShAvpCodes.SH_VENDOR_ID);
-      JAXBElement<TShData> jaxbElem = udof.createShData((TShData) unmarshaller.unmarshal(new ByteArrayInputStream(data)));
-      shDataObject = (ShData) jaxbElem.getValue();
+      return xmlMapper.readValue(new ByteArrayInputStream(data), TShData.class);
     }
     catch (Exception e) {
-      throw new IOException("Failed to unmarshal User-Data AVP into JAXB Object", e);
+      throw new IOException("Failed to unmarshal User-Data AVP into Object", e);
     }
-    return shDataObject;
   }
   
   /* 
@@ -180,14 +160,12 @@ public class SubscribeNotificationsAnswerImpl extends DiameterShMessageImpl impl
    */
   public void setUserDataObject(ShData userData) throws IOException {
     try {
-      Marshaller marshaller = jaxbContext.createMarshaller();
-
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      marshaller.marshal(userData, baos);
+      xmlMapper.writeValue(baos, userData);
       addAvp(DiameterShAvpCodes.USER_DATA, DiameterShAvpCodes.SH_VENDOR_ID, baos.toByteArray());
     }
     catch (Exception e) {
-      throw new IOException("Failed to marshal JAXB Object to User-Data AVP", e);
+      throw new IOException("Failed to marshal Object to User-Data AVP", e);
     }
   }
   
