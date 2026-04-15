@@ -28,6 +28,5 @@
 			<artifactId>jctools-core</artifactId>
 			<version>4.0.3</version>
 		</dependency>
-		<!-- XStream for XML serialization -->
-		</dependencies>
+	</dependencies>
 </project>
