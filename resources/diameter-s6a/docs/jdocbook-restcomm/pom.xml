@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>org.mobicents.resources</groupId>
 		<artifactId>restcomm-slee-ra-diameter-s6a-docs</artifactId>
-		<version>7.4.7</version>
+		<version>7.4.8</version>
 	</parent>
 
 	<artifactId>restcomm-slee-ra-diameter-s6a-docs-jdocbook-restcomm</artifactId>
